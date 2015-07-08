@@ -1,0 +1,21 @@
+<ion-view view-title="Identificar">
+    <ion-header-bar>
+        <h1 class="title">Identificar</h1>
+    <div class="buttons">
+      <button class="button button-clear" ng-click="closeModal()">Fechar</button>
+    </div>
+  </ion-header-bar>
+    
+  <ion-content delegate-handle="mainScroll" class="padding">
+    
+      <div class="list">  
+    <button id="btOption1" class="button button-full button-positive" ng-click="optionClick('op1')">
+      {{currentOption.option1}}
+    </button>
+    <p>ou</p>
+    <button id="btOption2" class="button button-full button-positive" ng-click="optionClick('op2')" >
+      {{currentOption.option2}}
+    </button>
+      </div>
+  </ion-content>
+</ion-view>

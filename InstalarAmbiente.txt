@@ -1,0 +1,13 @@
+Instalar ambiente
+	1. Instalar Node.js
+	2 $npm install -g cordova ionic
+        2. pela linha de comando e na pasta do projeto "caretta" instalar as dependencias:
+		$ npm install
+        
+	3. pela linha de comando e na pasta do projeto "caretta" ativar o servidor:
+	    $ ionic serve --lab
+		
+
+Instalar prototipo
+	1. Instalar Ionic App
+	2. abrir o caretta pelo id :f4907506

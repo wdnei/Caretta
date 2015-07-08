@@ -1,0 +1,15 @@
+<ion-view view-title="Tartarugas Marinhas">
+  <ion-content delegate-handle="mainScroll" class="padding">
+      <div class="list" ng-repeat="turtle in turtles">
+
+    <a class="item item-avatar" href="#/app/turtleListView/{{turtle.id}}">
+      <img src="{{turtle.img}}">
+      <h2> {{turtle.nameLt}}</h2>
+      
+    </a>
+</div>
+      
+      
+
+  </ion-content>
+</ion-view>

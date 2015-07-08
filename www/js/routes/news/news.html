@@ -1,0 +1,19 @@
+<ion-view ng-init="init()" view-title="News TAMAR">
+  <ion-content delegate-handle="mainScroll" class="padding">
+      
+      
+        
+        
+        <div class="card" ng-repeat="item in items">
+            
+  <a class="item item-text-wrap" ng-href="#"  ng-click="goTo('{{item.link}}')">
+      <p>{{ item.pubdate}}</p>   
+   {{item.title}}. Ver detalhes...
+  </a>
+</div>
+      <p>{{rssjson}}</p>
+      
+      
+
+  </ion-content>
+</ion-view>

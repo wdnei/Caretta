@@ -1,0 +1,38 @@
+<ion-view view-title="Registrar Ninho" ng-init="locate()">
+<ion-nav-buttons side="right">
+    <button class="button button-clear button-positive">Enviar</button>
+  </ion-nav-buttons>
+    <ion-content delegate-handle="mainScroll" class="padding">        
+        <div class="list">
+            <div class="item item-button-right">
+                <span>Latitude:</span><span id="lat" >{{lat}}</span><br/>
+                <span>Longitude:</span> <span id="lon" >{{lon}}</span>
+                <button ng-click="locate();" class="button button-icon icon ion-pinpoint"></button>
+            </div>
+
+
+            <label class="item item-input item-stacked-label">
+                <span class="input-label">Data e Hora</span>
+                <input type="datetime-local" id="data" name="data" ng-model="data.date"
+                       placeholder="yyyy-MM-ddTHH:mm" min="2001-01-01T00:00" max="2099-12-31T00:00" required />
+            </label>
+
+            <label class="item item-input item-stacked-label">
+                <span class="input-label">Comentário</span>
+                <input type="text" placeholder="Comentário">
+            </label>
+
+        </div>
+
+        <div class="row">
+            <div class="col"><button ng-click="getPicture()" class="button button-block button-primary">Add Imagem</button></div>
+            <div class="col"><button ng-click="takePicture()" class="button button-block button-primary">Tirar Foto</button></div>
+        </div>
+
+
+<!--        <p>{{data.imageURI}}</p>-->
+
+        <img  id="myImage" style="max-width: 100%">
+        
+    </ion-content>
+</ion-view>
