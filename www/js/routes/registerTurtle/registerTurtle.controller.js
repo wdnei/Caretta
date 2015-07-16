@@ -14,11 +14,11 @@
      *
      * @ngInject
      */
-    function RegisterTurtleCtrl($scope, $ionicPopup, PhotoService, TurtleService, $ionicModal, $stateParams, $ionicScrollDelegate) {
+    function RegisterTurtleCtrl($scope, $rootScope, $ionicPopup, PhotoService, TurtleService, $ionicModal, $stateParams, $ionicScrollDelegate) {
 
 
-        
-        
+
+
 
         $scope.turtles = TurtleService.allTurtles();
 
@@ -72,7 +72,7 @@
                     this.currentOption = this.initialOption;
                     $scope.$apply();
 
-                    
+
                 }
             }
             else
@@ -102,8 +102,8 @@
         }).then(function (modal) {
             $scope.modal = modal;
         });
-        
-        $scope.closeModal=function()
+
+        $scope.closeModal = function ()
         {
             $scope.modal.hide();
         }
@@ -113,10 +113,7 @@
         };
 
 
-        $scope.data = {
-            date: new Date(),
-            imageURI: ''
-        };
+
 
 
 
@@ -128,7 +125,7 @@
                     console.log(imageURI);
                     $scope.data.imageURI = imageURI;
                     var image = document.getElementById('myImage');
-                    image.src = imageURI;
+                    image.src ="data:image/jpeg;base64," + imageURI;
 
                 }, function (err) {
                     console.err(err);
@@ -168,9 +165,10 @@
 //                    template: imageURI
 //                });
                     $scope.data.imageURI = imageURI;
-                    $scope.$apply();
+                    
                     var image = document.getElementById('myImage');
                     image.src = "data:image/jpeg;base64," + imageURI;
+                    $scope.$apply();
 
                 }, function (err) {
                     console.err(err);
@@ -186,31 +184,42 @@
 
             }
 
-
-//            PhotoService.getPicture1(options).then(function (imageURI) {
-//                console.log(imageURI);
-//                $scope.lastPhoto = imageURI[0];
-//            }, function (err) {
-//                console.err(err);
-//            });
         };
+
+
+
+        $scope.init = function ()
+        {
+            $scope.data = {
+                imageURI: '',
+                comment: "",
+                userName: "",
+                userId: 0,
+                date: new Date()
+            };
+
+
+
+            $scope.image = {};
+            $scope.location = {};
+            $scope.location.lat = "Deconhecida";
+            $scope.location.lng = "Deconhecida";
+
+        }
 
 
         /**
          * Center map on user's current position
          */
         $scope.locate = function () {
-            $scope.lat = "Deconhecida";
-            $scope.lon = "Deconhecida";
-            $scope.date = {
-                value: new Date()
-            };
+
+
             if (navigator.geolocation)
             {
                 navigator.geolocation.getCurrentPosition(function (position) {
-                    $scope.position = position;
-                    $scope.lat = position.coords.latitude;
-                    $scope.lon = position.coords.longitude;
+                    $scope.location.position = position;
+                    $scope.location.lat = position.coords.latitude;
+                    $scope.location.lng = position.coords.longitude;
                     document.getElementById("lat").innerHTML = position.coords.latitude;
                     document.getElementById("lon").innerHTML = position.coords.longitude;
                     $scope.$apply();
@@ -238,6 +247,36 @@
 
             }
 
+
+        };
+
+
+
+
+        $scope.send = function ()
+        {
+
+            if ($rootScope.isLogged())
+            {
+
+                var register = {
+                    comment: $scope.data.comment,
+                    when: $scope.data.date,
+                    location: {lat: $scope.location.lat, lng: $scope.location.lng},
+                    specieId: $scope.chosenSpecieId.id,
+                    specie: $scope.chosenSpecieId.nameLt,
+                    userName: $rootScope.currentUser.email,
+                    imgUrl: "",
+                    userId: $rootScope.currentUser.id
+
+                };
+
+                console.log(register);
+            }else
+            {
+                $rootScope.showAlert("","Usuário necessita estar logado!");
+                $rootScope.login();
+            }
 
         };
 

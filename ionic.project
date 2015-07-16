@@ -1,4 +1,10 @@
 {
   "name": "caretta",
-  "app_id": "f4907506"
+  "app_id": "f4907506",
+  "proxies": [
+    {
+      "path": "/api",
+      "proxyUrl": "http://carettalb-caretta.rhcloud.com/api"
+    }
+  ]
 }

@@ -146,6 +146,60 @@ module.factory(
           method: "PUT"
         },
 
+        // INTERNAL. Use User.complaints.findById() instead.
+        "prototype$__findById__complaints": {
+          url: urlBase + "/Users/:id/complaints/:fk",
+          method: "GET"
+        },
+
+        // INTERNAL. Use User.complaints.destroyById() instead.
+        "prototype$__destroyById__complaints": {
+          url: urlBase + "/Users/:id/complaints/:fk",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use User.complaints.updateById() instead.
+        "prototype$__updateById__complaints": {
+          url: urlBase + "/Users/:id/complaints/:fk",
+          method: "PUT"
+        },
+
+        // INTERNAL. Use User.nests.findById() instead.
+        "prototype$__findById__nests": {
+          url: urlBase + "/Users/:id/nests/:fk",
+          method: "GET"
+        },
+
+        // INTERNAL. Use User.nests.destroyById() instead.
+        "prototype$__destroyById__nests": {
+          url: urlBase + "/Users/:id/nests/:fk",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use User.nests.updateById() instead.
+        "prototype$__updateById__nests": {
+          url: urlBase + "/Users/:id/nests/:fk",
+          method: "PUT"
+        },
+
+        // INTERNAL. Use User.turtles.findById() instead.
+        "prototype$__findById__turtles": {
+          url: urlBase + "/Users/:id/turtles/:fk",
+          method: "GET"
+        },
+
+        // INTERNAL. Use User.turtles.destroyById() instead.
+        "prototype$__destroyById__turtles": {
+          url: urlBase + "/Users/:id/turtles/:fk",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use User.turtles.updateById() instead.
+        "prototype$__updateById__turtles": {
+          url: urlBase + "/Users/:id/turtles/:fk",
+          method: "PUT"
+        },
+
         /**
          * @ngdoc method
          * @name lbServices.User#prototype$__get__accessTokens
@@ -280,6 +334,81 @@ module.factory(
          */
         "prototype$__count__accessTokens": {
           url: urlBase + "/Users/:id/accessTokens/count",
+          method: "GET"
+        },
+
+        // INTERNAL. Use User.complaints() instead.
+        "prototype$__get__complaints": {
+          isArray: true,
+          url: urlBase + "/Users/:id/complaints",
+          method: "GET"
+        },
+
+        // INTERNAL. Use User.complaints.create() instead.
+        "prototype$__create__complaints": {
+          url: urlBase + "/Users/:id/complaints",
+          method: "POST"
+        },
+
+        // INTERNAL. Use User.complaints.destroyAll() instead.
+        "prototype$__delete__complaints": {
+          url: urlBase + "/Users/:id/complaints",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use User.complaints.count() instead.
+        "prototype$__count__complaints": {
+          url: urlBase + "/Users/:id/complaints/count",
+          method: "GET"
+        },
+
+        // INTERNAL. Use User.nests() instead.
+        "prototype$__get__nests": {
+          isArray: true,
+          url: urlBase + "/Users/:id/nests",
+          method: "GET"
+        },
+
+        // INTERNAL. Use User.nests.create() instead.
+        "prototype$__create__nests": {
+          url: urlBase + "/Users/:id/nests",
+          method: "POST"
+        },
+
+        // INTERNAL. Use User.nests.destroyAll() instead.
+        "prototype$__delete__nests": {
+          url: urlBase + "/Users/:id/nests",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use User.nests.count() instead.
+        "prototype$__count__nests": {
+          url: urlBase + "/Users/:id/nests/count",
+          method: "GET"
+        },
+
+        // INTERNAL. Use User.turtles() instead.
+        "prototype$__get__turtles": {
+          isArray: true,
+          url: urlBase + "/Users/:id/turtles",
+          method: "GET"
+        },
+
+        // INTERNAL. Use User.turtles.create() instead.
+        "prototype$__create__turtles": {
+          url: urlBase + "/Users/:id/turtles",
+          method: "POST"
+        },
+
+        // INTERNAL. Use User.turtles.destroyAll() instead.
+        "prototype$__delete__turtles": {
+          url: urlBase + "/Users/:id/turtles",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use User.turtles.count() instead.
+        "prototype$__count__turtles": {
+          url: urlBase + "/Users/:id/turtles/count",
           method: "GET"
         },
 
@@ -793,6 +922,24 @@ module.factory(
           method: "POST"
         },
 
+        // INTERNAL. Use Complaint.user() instead.
+        "::get::Complaint::user": {
+          url: urlBase + "/Complaints/:id/user",
+          method: "GET"
+        },
+
+        // INTERNAL. Use Nest.user() instead.
+        "::get::Nest::user": {
+          url: urlBase + "/Nests/:id/user",
+          method: "GET"
+        },
+
+        // INTERNAL. Use Turtle.user() instead.
+        "::get::Turtle::user": {
+          url: urlBase + "/Turtles/:id/user",
+          method: "GET"
+        },
+
         /**
          * @ngdoc method
          * @name lbServices.User#getCurrent
@@ -1008,6 +1155,795 @@ module.factory(
     */
     R.modelName = "User";
 
+    /**
+     * @ngdoc object
+     * @name lbServices.User.complaints
+     * @header lbServices.User.complaints
+     * @object
+     * @description
+     *
+     * The object `User.complaints` groups methods
+     * manipulating `Complaint` instances related to `User`.
+     *
+     * Call {@link lbServices.User#complaints User.complaints()}
+     * to query all related instances.
+     */
+
+
+        /**
+         * @ngdoc method
+         * @name lbServices.User#complaints
+         * @methodOf lbServices.User
+         *
+         * @description
+         *
+         * Queries complaints of User.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - User id
+         *
+         *  - `filter` – `{object=}` - 
+         *
+         * @param {function(Array.<Object>,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Array.<Object>} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Complaint` object.)
+         * </em>
+         */
+        R.complaints = function() {
+          var TargetResource = $injector.get("Complaint");
+          var action = TargetResource["::get::User::complaints"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.User.complaints#count
+         * @methodOf lbServices.User.complaints
+         *
+         * @description
+         *
+         * Counts complaints of User.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - User id
+         *
+         *  - `where` – `{object=}` - Criteria to match model instances
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * Data properties:
+         *
+         *  - `count` – `{number=}` - 
+         */
+        R.complaints.count = function() {
+          var TargetResource = $injector.get("Complaint");
+          var action = TargetResource["::count::User::complaints"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.User.complaints#create
+         * @methodOf lbServices.User.complaints
+         *
+         * @description
+         *
+         * Creates a new instance in complaints of this model.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - User id
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Complaint` object.)
+         * </em>
+         */
+        R.complaints.create = function() {
+          var TargetResource = $injector.get("Complaint");
+          var action = TargetResource["::create::User::complaints"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.User.complaints#destroyAll
+         * @methodOf lbServices.User.complaints
+         *
+         * @description
+         *
+         * Deletes all complaints of this model.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - User id
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * This method returns no data.
+         */
+        R.complaints.destroyAll = function() {
+          var TargetResource = $injector.get("Complaint");
+          var action = TargetResource["::delete::User::complaints"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.User.complaints#destroyById
+         * @methodOf lbServices.User.complaints
+         *
+         * @description
+         *
+         * Delete a related item by id for complaints.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - User id
+         *
+         *  - `fk` – `{*}` - Foreign key for complaints
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * This method returns no data.
+         */
+        R.complaints.destroyById = function() {
+          var TargetResource = $injector.get("Complaint");
+          var action = TargetResource["::destroyById::User::complaints"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.User.complaints#findById
+         * @methodOf lbServices.User.complaints
+         *
+         * @description
+         *
+         * Find a related item by id for complaints.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - User id
+         *
+         *  - `fk` – `{*}` - Foreign key for complaints
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Complaint` object.)
+         * </em>
+         */
+        R.complaints.findById = function() {
+          var TargetResource = $injector.get("Complaint");
+          var action = TargetResource["::findById::User::complaints"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.User.complaints#updateById
+         * @methodOf lbServices.User.complaints
+         *
+         * @description
+         *
+         * Update a related item by id for complaints.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - User id
+         *
+         *  - `fk` – `{*}` - Foreign key for complaints
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Complaint` object.)
+         * </em>
+         */
+        R.complaints.updateById = function() {
+          var TargetResource = $injector.get("Complaint");
+          var action = TargetResource["::updateById::User::complaints"];
+          return action.apply(R, arguments);
+        };
+    /**
+     * @ngdoc object
+     * @name lbServices.User.nests
+     * @header lbServices.User.nests
+     * @object
+     * @description
+     *
+     * The object `User.nests` groups methods
+     * manipulating `Nest` instances related to `User`.
+     *
+     * Call {@link lbServices.User#nests User.nests()}
+     * to query all related instances.
+     */
+
+
+        /**
+         * @ngdoc method
+         * @name lbServices.User#nests
+         * @methodOf lbServices.User
+         *
+         * @description
+         *
+         * Queries nests of User.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - User id
+         *
+         *  - `filter` – `{object=}` - 
+         *
+         * @param {function(Array.<Object>,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Array.<Object>} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Nest` object.)
+         * </em>
+         */
+        R.nests = function() {
+          var TargetResource = $injector.get("Nest");
+          var action = TargetResource["::get::User::nests"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.User.nests#count
+         * @methodOf lbServices.User.nests
+         *
+         * @description
+         *
+         * Counts nests of User.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - User id
+         *
+         *  - `where` – `{object=}` - Criteria to match model instances
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * Data properties:
+         *
+         *  - `count` – `{number=}` - 
+         */
+        R.nests.count = function() {
+          var TargetResource = $injector.get("Nest");
+          var action = TargetResource["::count::User::nests"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.User.nests#create
+         * @methodOf lbServices.User.nests
+         *
+         * @description
+         *
+         * Creates a new instance in nests of this model.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - User id
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Nest` object.)
+         * </em>
+         */
+        R.nests.create = function() {
+          var TargetResource = $injector.get("Nest");
+          var action = TargetResource["::create::User::nests"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.User.nests#destroyAll
+         * @methodOf lbServices.User.nests
+         *
+         * @description
+         *
+         * Deletes all nests of this model.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - User id
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * This method returns no data.
+         */
+        R.nests.destroyAll = function() {
+          var TargetResource = $injector.get("Nest");
+          var action = TargetResource["::delete::User::nests"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.User.nests#destroyById
+         * @methodOf lbServices.User.nests
+         *
+         * @description
+         *
+         * Delete a related item by id for nests.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - User id
+         *
+         *  - `fk` – `{*}` - Foreign key for nests
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * This method returns no data.
+         */
+        R.nests.destroyById = function() {
+          var TargetResource = $injector.get("Nest");
+          var action = TargetResource["::destroyById::User::nests"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.User.nests#findById
+         * @methodOf lbServices.User.nests
+         *
+         * @description
+         *
+         * Find a related item by id for nests.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - User id
+         *
+         *  - `fk` – `{*}` - Foreign key for nests
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Nest` object.)
+         * </em>
+         */
+        R.nests.findById = function() {
+          var TargetResource = $injector.get("Nest");
+          var action = TargetResource["::findById::User::nests"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.User.nests#updateById
+         * @methodOf lbServices.User.nests
+         *
+         * @description
+         *
+         * Update a related item by id for nests.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - User id
+         *
+         *  - `fk` – `{*}` - Foreign key for nests
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Nest` object.)
+         * </em>
+         */
+        R.nests.updateById = function() {
+          var TargetResource = $injector.get("Nest");
+          var action = TargetResource["::updateById::User::nests"];
+          return action.apply(R, arguments);
+        };
+    /**
+     * @ngdoc object
+     * @name lbServices.User.turtles
+     * @header lbServices.User.turtles
+     * @object
+     * @description
+     *
+     * The object `User.turtles` groups methods
+     * manipulating `Turtle` instances related to `User`.
+     *
+     * Call {@link lbServices.User#turtles User.turtles()}
+     * to query all related instances.
+     */
+
+
+        /**
+         * @ngdoc method
+         * @name lbServices.User#turtles
+         * @methodOf lbServices.User
+         *
+         * @description
+         *
+         * Queries turtles of User.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - User id
+         *
+         *  - `filter` – `{object=}` - 
+         *
+         * @param {function(Array.<Object>,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Array.<Object>} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Turtle` object.)
+         * </em>
+         */
+        R.turtles = function() {
+          var TargetResource = $injector.get("Turtle");
+          var action = TargetResource["::get::User::turtles"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.User.turtles#count
+         * @methodOf lbServices.User.turtles
+         *
+         * @description
+         *
+         * Counts turtles of User.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - User id
+         *
+         *  - `where` – `{object=}` - Criteria to match model instances
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * Data properties:
+         *
+         *  - `count` – `{number=}` - 
+         */
+        R.turtles.count = function() {
+          var TargetResource = $injector.get("Turtle");
+          var action = TargetResource["::count::User::turtles"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.User.turtles#create
+         * @methodOf lbServices.User.turtles
+         *
+         * @description
+         *
+         * Creates a new instance in turtles of this model.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - User id
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Turtle` object.)
+         * </em>
+         */
+        R.turtles.create = function() {
+          var TargetResource = $injector.get("Turtle");
+          var action = TargetResource["::create::User::turtles"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.User.turtles#destroyAll
+         * @methodOf lbServices.User.turtles
+         *
+         * @description
+         *
+         * Deletes all turtles of this model.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - User id
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * This method returns no data.
+         */
+        R.turtles.destroyAll = function() {
+          var TargetResource = $injector.get("Turtle");
+          var action = TargetResource["::delete::User::turtles"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.User.turtles#destroyById
+         * @methodOf lbServices.User.turtles
+         *
+         * @description
+         *
+         * Delete a related item by id for turtles.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - User id
+         *
+         *  - `fk` – `{*}` - Foreign key for turtles
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * This method returns no data.
+         */
+        R.turtles.destroyById = function() {
+          var TargetResource = $injector.get("Turtle");
+          var action = TargetResource["::destroyById::User::turtles"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.User.turtles#findById
+         * @methodOf lbServices.User.turtles
+         *
+         * @description
+         *
+         * Find a related item by id for turtles.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - User id
+         *
+         *  - `fk` – `{*}` - Foreign key for turtles
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Turtle` object.)
+         * </em>
+         */
+        R.turtles.findById = function() {
+          var TargetResource = $injector.get("Turtle");
+          var action = TargetResource["::findById::User::turtles"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.User.turtles#updateById
+         * @methodOf lbServices.User.turtles
+         *
+         * @description
+         *
+         * Update a related item by id for turtles.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - User id
+         *
+         *  - `fk` – `{*}` - Foreign key for turtles
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Turtle` object.)
+         * </em>
+         */
+        R.turtles.updateById = function() {
+          var TargetResource = $injector.get("Turtle");
+          var action = TargetResource["::updateById::User::turtles"];
+          return action.apply(R, arguments);
+        };
 
     return R;
   }]);
@@ -1033,9 +1969,15 @@ module.factory(
   "Complaint",
   ['LoopBackResource', 'LoopBackAuth', '$injector', function(Resource, LoopBackAuth, $injector) {
     var R = Resource(
-      urlBase + "/complaints/:id",
+      urlBase + "/Complaints/:id",
       { 'id': '@id' },
       {
+
+        // INTERNAL. Use Complaint.user() instead.
+        "prototype$__get__user": {
+          url: urlBase + "/Complaints/:id/user",
+          method: "GET"
+        },
 
         /**
          * @ngdoc method
@@ -1071,7 +2013,7 @@ module.factory(
          * </em>
          */
         "create": {
-          url: urlBase + "/complaints",
+          url: urlBase + "/Complaints",
           method: "POST"
         },
 
@@ -1109,7 +2051,7 @@ module.factory(
          * </em>
          */
         "upsert": {
-          url: urlBase + "/complaints",
+          url: urlBase + "/Complaints",
           method: "PUT"
         },
 
@@ -1141,7 +2083,7 @@ module.factory(
          *  - `exists` – `{boolean=}` - 
          */
         "exists": {
-          url: urlBase + "/complaints/:id/exists",
+          url: urlBase + "/Complaints/:id/exists",
           method: "GET"
         },
 
@@ -1176,7 +2118,7 @@ module.factory(
          * </em>
          */
         "findById": {
-          url: urlBase + "/complaints/:id",
+          url: urlBase + "/Complaints/:id",
           method: "GET"
         },
 
@@ -1210,7 +2152,7 @@ module.factory(
          */
         "find": {
           isArray: true,
-          url: urlBase + "/complaints",
+          url: urlBase + "/Complaints",
           method: "GET"
         },
 
@@ -1243,7 +2185,7 @@ module.factory(
          * </em>
          */
         "findOne": {
-          url: urlBase + "/complaints/findOne",
+          url: urlBase + "/Complaints/findOne",
           method: "GET"
         },
 
@@ -1277,7 +2219,7 @@ module.factory(
          * This method returns no data.
          */
         "updateAll": {
-          url: urlBase + "/complaints/update",
+          url: urlBase + "/Complaints/update",
           method: "POST"
         },
 
@@ -1307,7 +2249,7 @@ module.factory(
          * This method returns no data.
          */
         "deleteById": {
-          url: urlBase + "/complaints/:id",
+          url: urlBase + "/Complaints/:id",
           method: "DELETE"
         },
 
@@ -1339,7 +2281,7 @@ module.factory(
          *  - `count` – `{number=}` - 
          */
         "count": {
-          url: urlBase + "/complaints/count",
+          url: urlBase + "/Complaints/count",
           method: "GET"
         },
 
@@ -1376,8 +2318,51 @@ module.factory(
          * </em>
          */
         "prototype$updateAttributes": {
-          url: urlBase + "/complaints/:id",
+          url: urlBase + "/Complaints/:id",
           method: "PUT"
+        },
+
+        // INTERNAL. Use User.complaints.findById() instead.
+        "::findById::User::complaints": {
+          url: urlBase + "/Users/:id/complaints/:fk",
+          method: "GET"
+        },
+
+        // INTERNAL. Use User.complaints.destroyById() instead.
+        "::destroyById::User::complaints": {
+          url: urlBase + "/Users/:id/complaints/:fk",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use User.complaints.updateById() instead.
+        "::updateById::User::complaints": {
+          url: urlBase + "/Users/:id/complaints/:fk",
+          method: "PUT"
+        },
+
+        // INTERNAL. Use User.complaints() instead.
+        "::get::User::complaints": {
+          isArray: true,
+          url: urlBase + "/Users/:id/complaints",
+          method: "GET"
+        },
+
+        // INTERNAL. Use User.complaints.create() instead.
+        "::create::User::complaints": {
+          url: urlBase + "/Users/:id/complaints",
+          method: "POST"
+        },
+
+        // INTERNAL. Use User.complaints.destroyAll() instead.
+        "::delete::User::complaints": {
+          url: urlBase + "/Users/:id/complaints",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use User.complaints.count() instead.
+        "::count::User::complaints": {
+          url: urlBase + "/Users/:id/complaints/count",
+          method: "GET"
         },
       }
     );
@@ -1516,6 +2501,42 @@ module.factory(
     R.modelName = "Complaint";
 
 
+        /**
+         * @ngdoc method
+         * @name lbServices.Complaint#user
+         * @methodOf lbServices.Complaint
+         *
+         * @description
+         *
+         * Fetches belongsTo relation user.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         *  - `refresh` – `{boolean=}` - 
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `User` object.)
+         * </em>
+         */
+        R.user = function() {
+          var TargetResource = $injector.get("User");
+          var action = TargetResource["::get::Complaint::user"];
+          return action.apply(R, arguments);
+        };
+
     return R;
   }]);
 
@@ -1540,9 +2561,15 @@ module.factory(
   "Nest",
   ['LoopBackResource', 'LoopBackAuth', '$injector', function(Resource, LoopBackAuth, $injector) {
     var R = Resource(
-      urlBase + "/nests/:id",
+      urlBase + "/Nests/:id",
       { 'id': '@id' },
       {
+
+        // INTERNAL. Use Nest.user() instead.
+        "prototype$__get__user": {
+          url: urlBase + "/Nests/:id/user",
+          method: "GET"
+        },
 
         /**
          * @ngdoc method
@@ -1578,7 +2605,7 @@ module.factory(
          * </em>
          */
         "create": {
-          url: urlBase + "/nests",
+          url: urlBase + "/Nests",
           method: "POST"
         },
 
@@ -1616,7 +2643,7 @@ module.factory(
          * </em>
          */
         "upsert": {
-          url: urlBase + "/nests",
+          url: urlBase + "/Nests",
           method: "PUT"
         },
 
@@ -1648,7 +2675,7 @@ module.factory(
          *  - `exists` – `{boolean=}` - 
          */
         "exists": {
-          url: urlBase + "/nests/:id/exists",
+          url: urlBase + "/Nests/:id/exists",
           method: "GET"
         },
 
@@ -1683,7 +2710,7 @@ module.factory(
          * </em>
          */
         "findById": {
-          url: urlBase + "/nests/:id",
+          url: urlBase + "/Nests/:id",
           method: "GET"
         },
 
@@ -1717,7 +2744,7 @@ module.factory(
          */
         "find": {
           isArray: true,
-          url: urlBase + "/nests",
+          url: urlBase + "/Nests",
           method: "GET"
         },
 
@@ -1750,7 +2777,7 @@ module.factory(
          * </em>
          */
         "findOne": {
-          url: urlBase + "/nests/findOne",
+          url: urlBase + "/Nests/findOne",
           method: "GET"
         },
 
@@ -1784,7 +2811,7 @@ module.factory(
          * This method returns no data.
          */
         "updateAll": {
-          url: urlBase + "/nests/update",
+          url: urlBase + "/Nests/update",
           method: "POST"
         },
 
@@ -1814,7 +2841,7 @@ module.factory(
          * This method returns no data.
          */
         "deleteById": {
-          url: urlBase + "/nests/:id",
+          url: urlBase + "/Nests/:id",
           method: "DELETE"
         },
 
@@ -1846,7 +2873,7 @@ module.factory(
          *  - `count` – `{number=}` - 
          */
         "count": {
-          url: urlBase + "/nests/count",
+          url: urlBase + "/Nests/count",
           method: "GET"
         },
 
@@ -1883,8 +2910,51 @@ module.factory(
          * </em>
          */
         "prototype$updateAttributes": {
-          url: urlBase + "/nests/:id",
+          url: urlBase + "/Nests/:id",
           method: "PUT"
+        },
+
+        // INTERNAL. Use User.nests.findById() instead.
+        "::findById::User::nests": {
+          url: urlBase + "/Users/:id/nests/:fk",
+          method: "GET"
+        },
+
+        // INTERNAL. Use User.nests.destroyById() instead.
+        "::destroyById::User::nests": {
+          url: urlBase + "/Users/:id/nests/:fk",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use User.nests.updateById() instead.
+        "::updateById::User::nests": {
+          url: urlBase + "/Users/:id/nests/:fk",
+          method: "PUT"
+        },
+
+        // INTERNAL. Use User.nests() instead.
+        "::get::User::nests": {
+          isArray: true,
+          url: urlBase + "/Users/:id/nests",
+          method: "GET"
+        },
+
+        // INTERNAL. Use User.nests.create() instead.
+        "::create::User::nests": {
+          url: urlBase + "/Users/:id/nests",
+          method: "POST"
+        },
+
+        // INTERNAL. Use User.nests.destroyAll() instead.
+        "::delete::User::nests": {
+          url: urlBase + "/Users/:id/nests",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use User.nests.count() instead.
+        "::count::User::nests": {
+          url: urlBase + "/Users/:id/nests/count",
+          method: "GET"
         },
       }
     );
@@ -2023,6 +3093,42 @@ module.factory(
     R.modelName = "Nest";
 
 
+        /**
+         * @ngdoc method
+         * @name lbServices.Nest#user
+         * @methodOf lbServices.Nest
+         *
+         * @description
+         *
+         * Fetches belongsTo relation user.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         *  - `refresh` – `{boolean=}` - 
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `User` object.)
+         * </em>
+         */
+        R.user = function() {
+          var TargetResource = $injector.get("User");
+          var action = TargetResource["::get::Nest::user"];
+          return action.apply(R, arguments);
+        };
+
     return R;
   }]);
 
@@ -2047,9 +3153,15 @@ module.factory(
   "Turtle",
   ['LoopBackResource', 'LoopBackAuth', '$injector', function(Resource, LoopBackAuth, $injector) {
     var R = Resource(
-      urlBase + "/turtles/:id",
+      urlBase + "/Turtles/:id",
       { 'id': '@id' },
       {
+
+        // INTERNAL. Use Turtle.user() instead.
+        "prototype$__get__user": {
+          url: urlBase + "/Turtles/:id/user",
+          method: "GET"
+        },
 
         /**
          * @ngdoc method
@@ -2085,7 +3197,7 @@ module.factory(
          * </em>
          */
         "create": {
-          url: urlBase + "/turtles",
+          url: urlBase + "/Turtles",
           method: "POST"
         },
 
@@ -2123,7 +3235,7 @@ module.factory(
          * </em>
          */
         "upsert": {
-          url: urlBase + "/turtles",
+          url: urlBase + "/Turtles",
           method: "PUT"
         },
 
@@ -2155,7 +3267,7 @@ module.factory(
          *  - `exists` – `{boolean=}` - 
          */
         "exists": {
-          url: urlBase + "/turtles/:id/exists",
+          url: urlBase + "/Turtles/:id/exists",
           method: "GET"
         },
 
@@ -2190,7 +3302,7 @@ module.factory(
          * </em>
          */
         "findById": {
-          url: urlBase + "/turtles/:id",
+          url: urlBase + "/Turtles/:id",
           method: "GET"
         },
 
@@ -2224,7 +3336,7 @@ module.factory(
          */
         "find": {
           isArray: true,
-          url: urlBase + "/turtles",
+          url: urlBase + "/Turtles",
           method: "GET"
         },
 
@@ -2257,7 +3369,7 @@ module.factory(
          * </em>
          */
         "findOne": {
-          url: urlBase + "/turtles/findOne",
+          url: urlBase + "/Turtles/findOne",
           method: "GET"
         },
 
@@ -2291,7 +3403,7 @@ module.factory(
          * This method returns no data.
          */
         "updateAll": {
-          url: urlBase + "/turtles/update",
+          url: urlBase + "/Turtles/update",
           method: "POST"
         },
 
@@ -2321,7 +3433,7 @@ module.factory(
          * This method returns no data.
          */
         "deleteById": {
-          url: urlBase + "/turtles/:id",
+          url: urlBase + "/Turtles/:id",
           method: "DELETE"
         },
 
@@ -2353,7 +3465,7 @@ module.factory(
          *  - `count` – `{number=}` - 
          */
         "count": {
-          url: urlBase + "/turtles/count",
+          url: urlBase + "/Turtles/count",
           method: "GET"
         },
 
@@ -2390,8 +3502,51 @@ module.factory(
          * </em>
          */
         "prototype$updateAttributes": {
-          url: urlBase + "/turtles/:id",
+          url: urlBase + "/Turtles/:id",
           method: "PUT"
+        },
+
+        // INTERNAL. Use User.turtles.findById() instead.
+        "::findById::User::turtles": {
+          url: urlBase + "/Users/:id/turtles/:fk",
+          method: "GET"
+        },
+
+        // INTERNAL. Use User.turtles.destroyById() instead.
+        "::destroyById::User::turtles": {
+          url: urlBase + "/Users/:id/turtles/:fk",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use User.turtles.updateById() instead.
+        "::updateById::User::turtles": {
+          url: urlBase + "/Users/:id/turtles/:fk",
+          method: "PUT"
+        },
+
+        // INTERNAL. Use User.turtles() instead.
+        "::get::User::turtles": {
+          isArray: true,
+          url: urlBase + "/Users/:id/turtles",
+          method: "GET"
+        },
+
+        // INTERNAL. Use User.turtles.create() instead.
+        "::create::User::turtles": {
+          url: urlBase + "/Users/:id/turtles",
+          method: "POST"
+        },
+
+        // INTERNAL. Use User.turtles.destroyAll() instead.
+        "::delete::User::turtles": {
+          url: urlBase + "/Users/:id/turtles",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use User.turtles.count() instead.
+        "::count::User::turtles": {
+          url: urlBase + "/Users/:id/turtles/count",
+          method: "GET"
         },
       }
     );
@@ -2530,6 +3685,42 @@ module.factory(
     R.modelName = "Turtle";
 
 
+        /**
+         * @ngdoc method
+         * @name lbServices.Turtle#user
+         * @methodOf lbServices.Turtle
+         *
+         * @description
+         *
+         * Fetches belongsTo relation user.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         *  - `refresh` – `{boolean=}` - 
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `User` object.)
+         * </em>
+         */
+        R.user = function() {
+          var TargetResource = $injector.get("User");
+          var action = TargetResource["::get::Turtle::user"];
+          return action.apply(R, arguments);
+        };
+
     return R;
   }]);
 
@@ -2554,7 +3745,7 @@ module.factory(
   "Container",
   ['LoopBackResource', 'LoopBackAuth', '$injector', function(Resource, LoopBackAuth, $injector) {
     var R = Resource(
-      urlBase + "/containers/:id",
+      urlBase + "/Containers/:id",
       { 'id': '@id' },
       {
 
@@ -2591,7 +3782,7 @@ module.factory(
          */
         "getContainers": {
           isArray: true,
-          url: urlBase + "/containers",
+          url: urlBase + "/Containers",
           method: "GET"
         },
 
@@ -2631,7 +3822,7 @@ module.factory(
          * </em>
          */
         "createContainer": {
-          url: urlBase + "/containers",
+          url: urlBase + "/Containers",
           method: "POST"
         },
 
@@ -2665,7 +3856,7 @@ module.factory(
          *  - `` – `{undefined=}` - 
          */
         "destroyContainer": {
-          url: urlBase + "/containers/:container",
+          url: urlBase + "/Containers/:container",
           method: "DELETE"
         },
 
@@ -2700,7 +3891,7 @@ module.factory(
          * </em>
          */
         "getContainer": {
-          url: urlBase + "/containers/:container",
+          url: urlBase + "/Containers/:container",
           method: "GET"
         },
 
@@ -2736,7 +3927,7 @@ module.factory(
          */
         "getFiles": {
           isArray: true,
-          url: urlBase + "/containers/:container/files",
+          url: urlBase + "/Containers/:container/files",
           method: "GET"
         },
 
@@ -2773,7 +3964,7 @@ module.factory(
          * </em>
          */
         "getFile": {
-          url: urlBase + "/containers/:container/files/:file",
+          url: urlBase + "/Containers/:container/files/:file",
           method: "GET"
         },
 
@@ -2809,7 +4000,7 @@ module.factory(
          *  - `` – `{undefined=}` - 
          */
         "removeFile": {
-          url: urlBase + "/containers/:container/files/:file",
+          url: urlBase + "/Containers/:container/files/:file",
           method: "DELETE"
         },
 
@@ -2850,7 +4041,7 @@ module.factory(
          *  - `result` – `{object=}` - 
          */
         "upload": {
-          url: urlBase + "/containers/:container/upload",
+          url: urlBase + "/Containers/:container/upload",
           method: "POST"
         },
 
@@ -2886,7 +4077,7 @@ module.factory(
          * This method returns no data.
          */
         "download": {
-          url: urlBase + "/containers/:container/download/:file",
+          url: urlBase + "/Containers/:container/download/:file",
           method: "GET"
         },
       }

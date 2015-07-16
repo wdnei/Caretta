@@ -1,4 +1,4 @@
-<ion-side-menus enable-menu-with-back-views="false">
+<ion-side-menus enable-menu-with-back-views="false" ng-init="loadAuth()">
     <ion-side-menu-content>
         <ion-nav-bar class="bar-stable">
             <ion-nav-back-button>
@@ -39,8 +39,11 @@
                 <ion-item menu-close href="#/app/news">
                     News
                 </ion-item>
-                <ion-item menu-close  ng-click="login()">
+                <ion-item menu-close ng-hide="isLogged()"  ng-click="login()">
                     Login
+                </ion-item>
+                <ion-item menu-close ng-show="isLogged()"  ng-click="logout()">
+                    Log Out
                 </ion-item>
                 
             </ion-list>

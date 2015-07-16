@@ -34,7 +34,7 @@
 
 
         return {
-            takePicture: function (options) {
+            takePicture: function () {
                 var q = $q.defer();
 
                 navigator.camera.getPicture(function (result) {
@@ -42,7 +42,8 @@
                     q.resolve(result);
                 }, function (err) {
                     q.reject(err);
-                }, options);
+                }, {quality: 50,
+                    destinationType: navigator.camera.DestinationType.DATA_URL});
 
                 return q.promise;
             },
@@ -77,7 +78,6 @@
 //                }, options);
 //                return q.promise;
             },
-            
             getPhoto: function (source) {
                 var q = $q.defer();
                 // Retrieve image file location from specified source
@@ -90,7 +90,7 @@
                     destinationType: devicePhotoSource.destinationType.DATA_URL,
                     sourceType: source});
                 return q.promise;
-                
+
             }
         };
     }

@@ -29,16 +29,27 @@
 
 
         $scope.takePicture = function () {
-            PhotoService.takePicture().then(function (imageURI) {
-                console.log(imageURI);
-                $scope.data.imageURI = imageURI;
-                var image = document.getElementById('myImage');
-                    image.src = imageURI;
-                
-            }, function (err) {
-                console.err(err);
-            });
+            try {
+                PhotoService.takePicture().then(function (imageURI) {
+                    console.log(imageURI);
+                    $scope.data.imageURI = imageURI;
+                    var image = document.getElementById('myImage');
+                    image.src ="data:image/jpeg;base64," + imageURI;
+
+                }, function (err) {
+                    console.err(err);
+                });
+            } catch (err)
+            {
+                console.log(err);
+                $ionicPopup.alert({
+                    title: 'Erro',
+                    template: err.message
+                });
+
+            }
         };
+
 
         $scope.getPicture = function () {
             var options = {
