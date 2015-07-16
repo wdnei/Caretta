@@ -270,7 +270,11 @@ angular.module('app', ['ionic', 'leaflet-directive',
                 $httpProvider.defaults.useXDomain = true;
                 delete $httpProvider.defaults.headers.common['X-Requested-With'];
             }
-        ]);
+        ])
+        
+.constant("APIlb", {
+        "url": "http://carettalb-caretta.rhcloud.com/api"
+    });
 
 
 

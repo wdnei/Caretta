@@ -14,7 +14,7 @@
      *
      * @ngInject
      */
-    function RegisterTurtleCtrl($scope, $rootScope, $ionicPopup, PhotoService, TurtleService, $ionicModal, $stateParams, $ionicScrollDelegate) {
+    function RegisterTurtleCtrl($scope, $http, APIlb, $rootScope, $ionicPopup, Turtle, PhotoService, TurtleService, $ionicModal, $stateParams, $ionicScrollDelegate) {
 
 
 
@@ -125,7 +125,7 @@
                     console.log(imageURI);
                     $scope.data.imageURI = imageURI;
                     var image = document.getElementById('myImage');
-                    image.src ="data:image/jpeg;base64," + imageURI;
+                    image.src = "data:image/jpeg;base64," + imageURI;
 
                 }, function (err) {
                     console.err(err);
@@ -165,7 +165,7 @@
 //                    template: imageURI
 //                });
                     $scope.data.imageURI = imageURI;
-                    
+
                     var image = document.getElementById('myImage');
                     image.src = "data:image/jpeg;base64," + imageURI;
                     $scope.$apply();
@@ -250,6 +250,15 @@
 
         };
 
+        $scope.dataURItoBlob = function (dataURI) {
+            var binary = atob(dataURI);
+            var array = [];
+            for (var i = 0; i < binary.length; i++) {
+                array.push(binary.charCodeAt(i));
+            }
+            return new Blob([new Uint8Array(array)], {type: 'image/jpeg'});
+        }
+
 
 
 
@@ -260,6 +269,7 @@
             {
 
                 var register = {
+                    id:0,
                     comment: $scope.data.comment,
                     when: $scope.data.date,
                     location: {lat: $scope.location.lat, lng: $scope.location.lng},
@@ -271,10 +281,52 @@
 
                 };
 
+                $rootScope.showLoad("Enviando imagem...");
+
+                var blob = $scope.dataURItoBlob($scope.data.imageURI);
+                var fd = new FormData();
+                var currentTime = new Date().toLocaleString().split("/").join("_").split(" ").join("t").split(":").join("_").split(",").join("");
+                var fileName = "u_" + $rootScope.currentUser.id + "_d" + currentTime + ".jpg";
+                fd.append("myFile", blob, fileName);
+                $http.post(APIlb.url + "/Containers/container1/upload", fd, {
+                    transformRequest: angular.identity,
+                    headers: {'Content-Type': undefined}
+                })
+                        .success(function (res) {
+                            $rootScope.hideLoad();
+                            $rootScope.showLoad("Registrando tartaruga...");
+
+                            var fileUrl = "/containers/container1/download/" + fileName;
+                            register.imgUrl = fileUrl;
+
+                            Turtle.create(register, function (res) {
+                                $rootScope.hideLoad();
+                                // success
+
+                                $rootScope.showAlert("Registrado", "Tartaruga Registrada com sucesso");
+
+                                console.log(res);
+                            }, function (res) {
+                                $rootScope.hideLoad();
+                                // error
+                                var erro = "Erro ao realizar registro!";
+
+                                $rootScope.showAlert(erro, res.status);
+                                console.log(res);
+                            });                           
+
+                        })
+                        .error(function (res) {
+                            $rootScope.showAlert("Erro", "Ocorreu um erro ao realizar upload do arquivo!");
+                            console.log(res);
+                            $rootScope.hideLoad();
+                        });
+
                 console.log(register);
-            }else
+
+            } else
             {
-                $rootScope.showAlert("","Usuário necessita estar logado!");
+                $rootScope.showAlert("", "Usuário necessita estar logado!");
                 $rootScope.login();
             }
 
