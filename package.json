@@ -20,7 +20,9 @@
     "org.apache.cordova.device",
 	"org.apache.cordova.geolocation",
 	"org.apache.cordova.camera",
-    "com.synconset.imagepicker"
+    "com.synconset.imagepicker",
+    "org.apache.cordova.inappbrowser"
+    
   ],
   "cordovaPlatforms": []
 }

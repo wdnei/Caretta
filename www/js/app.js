@@ -108,7 +108,12 @@ angular.module('app', ['ionic', 'leaflet-directive',
                     }, function (res) {
                         $rootScope.hideLoad();
                         // error
-                        $rootScope.showAlert(res.data.error.name, res.data.error.message);
+                        var erro="Erro ao realizar login";
+                        
+                        if(res.data.error.message)
+                            erro=res.data.error.message;
+                        
+                        $rootScope.showAlert("erro", erro);
                         console.log(res);
                     });
                 }
@@ -154,7 +159,7 @@ angular.module('app', ['ionic', 'leaflet-directive',
                 }, function (res) {
                     $rootScope.hideLoad();
                     // error
-                    $rootScope.showAlert("Erro", res.data.error.message);
+                    $rootScope.showAlert("Erro", "Ocorreu um erro ao registrar Usuario");
                     console.log(res);
                 });
                 // Simulate a login delay. Remove this and replace with your login
@@ -259,7 +264,7 @@ angular.module('app', ['ionic', 'leaflet-directive',
             // LoopBackResourceProvider.setAuthHeader('X-Access-Token');
 
             // Change the URL where to access the LoopBack REST API server
-            LoopBackResourceProvider.setUrlBase('//carettalb-caretta.rhcloud.com/api');
+            LoopBackResourceProvider.setUrlBase('http://carettalb-caretta.rhcloud.com/api');
         })
         .config(['$httpProvider', function ($httpProvider) {
                 $httpProvider.defaults.useXDomain = true;
