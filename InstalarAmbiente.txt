@@ -11,3 +11,15 @@ Instalar ambiente
 Instalar prototipo
 	1. Instalar Ionic App
 	2. abrir o caretta pelo id :f4907506
+
+
+Debugar
+    1. Na pasta do App Ionic e gere o arquivo .apk android
+    2. $ ionic add platform android
+    3. $ ionic build android
+    4. Instalar no device android
+    5. $  C:\Program Files (x86)\Android\android-studio\sdk\platform-tools\adb.exe install d:\Ionic\caretta\app\platforms\android\build\outputs\apk\android-debug.apk
+
+    6. Então abrir o Chrome pelo link 
+    7.  chrome://inspect/#devices
+    8. Abrir o app no device e ele aparecerah no chrome para ser debugado.

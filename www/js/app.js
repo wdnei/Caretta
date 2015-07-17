@@ -171,6 +171,16 @@ angular.module('app', ['ionic', 'leaflet-directive',
             {
                 return $rootScope.currentUser != null;
             }
+            
+            
+            $rootScope.dataURItoBlob = function (dataURI) {
+            var binary = atob(dataURI);
+            var array = [];
+            for (var i = 0; i < binary.length; i++) {
+                array.push(binary.charCodeAt(i));
+            }
+            return new Blob([new Uint8Array(array)], {type: 'image/jpeg'});
+        }
 
 
         })

@@ -191,7 +191,7 @@
         $scope.init = function ()
         {
             $scope.data = {
-                imageURI: '',
+                imageURI: "",
                 comment: "",
                 userName: "",
                 userId: 0,
@@ -202,8 +202,8 @@
 
             $scope.image = {};
             $scope.location = {};
-            $scope.location.lat = "Deconhecida";
-            $scope.location.lng = "Deconhecida";
+            $scope.location.lat = "Desconhecida";
+            $scope.location.lng = "Desconhecida";
 
         }
 
@@ -250,15 +250,34 @@
 
         };
 
-        $scope.dataURItoBlob = function (dataURI) {
-            var binary = atob(dataURI);
-            var array = [];
-            for (var i = 0; i < binary.length; i++) {
-                array.push(binary.charCodeAt(i));
-            }
-            return new Blob([new Uint8Array(array)], {type: 'image/jpeg'});
-        }
+        
 
+
+        $scope.isValid = function ()
+        {
+            var msg = "";
+            if ($scope.location.lat == "Desconhecida" || $scope.location.lng == "Desconhecida")
+            {
+                msg += "Localização desconhecida - Ative o GPS.</br>";
+            }
+            if ($scope.data.date=="")
+            {
+                msg += "Data não inserida.</br>";
+            }
+            
+            if ($scope.data.imageURI=="")
+            {
+                msg += "Imagem não inserida.</br>";
+            }
+
+            if (msg != "")
+            {
+                $rootScope.showAlert("Dados incompletos!", msg);
+                return false;
+            }
+
+            return true;
+        }
 
 
 
@@ -267,63 +286,64 @@
 
             if ($rootScope.isLogged())
             {
+                if ($scope.isValid())
+                {
+                    var register = {
+                        id: 0,
+                        comment: $scope.data.comment,
+                        when: $scope.data.date,
+                        location: {lat: $scope.location.lat, lng: $scope.location.lng},
+                        specieId: $scope.chosenSpecieId.id,
+                        specie: $scope.chosenSpecieId.nameLt,
+                        userName: $rootScope.currentUser.email,
+                        imgUrl: "",
+                        userId: $rootScope.currentUser.id
 
-                var register = {
-                    id:0,
-                    comment: $scope.data.comment,
-                    when: $scope.data.date,
-                    location: {lat: $scope.location.lat, lng: $scope.location.lng},
-                    specieId: $scope.chosenSpecieId.id,
-                    specie: $scope.chosenSpecieId.nameLt,
-                    userName: $rootScope.currentUser.email,
-                    imgUrl: "",
-                    userId: $rootScope.currentUser.id
+                    };
 
-                };
+                    $rootScope.showLoad("Enviando imagem...");
 
-                $rootScope.showLoad("Enviando imagem...");
-
-                var blob = $scope.dataURItoBlob($scope.data.imageURI);
-                var fd = new FormData();
-                var currentTime = new Date().toLocaleString().split("/").join("_").split(" ").join("t").split(":").join("_").split(",").join("");
-                var fileName = "u_" + $rootScope.currentUser.id + "_d" + currentTime + ".jpg";
-                fd.append("myFile", blob, fileName);
-                $http.post(APIlb.url + "/Containers/container1/upload", fd, {
-                    transformRequest: angular.identity,
-                    headers: {'Content-Type': undefined}
-                })
-                        .success(function (res) {
-                            $rootScope.hideLoad();
-                            $rootScope.showLoad("Registrando tartaruga...");
-
-                            var fileUrl = "/containers/container1/download/" + fileName;
-                            register.imgUrl = fileUrl;
-
-                            Turtle.create(register, function (res) {
+                    var blob = $rootScope.dataURItoBlob($scope.data.imageURI);
+                    var fd = new FormData();
+                    var currentTime = new Date().toLocaleString().split("/").join("_").split(" ").join("t").split(":").join("_").split(",").join("");
+                    var fileName = "u_" + $rootScope.currentUser.id + "_d" + currentTime + ".jpg";
+                    fd.append("myFile", blob, fileName);
+                    $http.post(APIlb.url + "/Containers/turtle/upload", fd, {
+                        transformRequest: angular.identity,
+                        headers: {'Content-Type': undefined}
+                    })
+                            .success(function (res) {
                                 $rootScope.hideLoad();
-                                // success
+                                $rootScope.showLoad("Registrando tartaruga...");
 
-                                $rootScope.showAlert("Registrado", "Tartaruga Registrada com sucesso");
+                                var fileUrl = "/containers/turtle/download/" + fileName;
+                                register.imgUrl = fileUrl;
 
+                                Turtle.create(register, function (res) {
+                                    $rootScope.hideLoad();
+                                    // success
+
+                                    $rootScope.showAlert("Registrado", "Tartaruga Registrada com sucesso");
+
+                                    console.log(res);
+                                }, function (res) {
+                                    $rootScope.hideLoad();
+                                    // error
+                                    var erro = "Erro ao realizar registro!";
+
+                                    $rootScope.showAlert(erro, res.status);
+                                    console.log(res);
+                                });
+
+                            })
+                            .error(function (res) {
+                                $rootScope.showAlert("Erro", "Ocorreu um erro ao realizar upload do arquivo!");
                                 console.log(res);
-                            }, function (res) {
                                 $rootScope.hideLoad();
-                                // error
-                                var erro = "Erro ao realizar registro!";
+                            });
 
-                                $rootScope.showAlert(erro, res.status);
-                                console.log(res);
-                            });                           
-
-                        })
-                        .error(function (res) {
-                            $rootScope.showAlert("Erro", "Ocorreu um erro ao realizar upload do arquivo!");
-                            console.log(res);
-                            $rootScope.hideLoad();
-                        });
-
-                console.log(register);
-
+                    console.log(register);
+                }
             } else
             {
                 $rootScope.showAlert("", "Usuário necessita estar logado!");

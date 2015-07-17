@@ -1,12 +1,12 @@
-<ion-view view-title="Registrar Ninho" ng-init="locate()">
+<ion-view view-title="Registrar Ninho" ng-init="init();locate()">
 <ion-nav-buttons side="right">
-    <button class="button button-clear button-positive">Enviar</button>
+    <button class="button button-clear button-positive" ng-click="send()">Enviar</button>
   </ion-nav-buttons>
-    <ion-content delegate-handle="mainScroll" class="padding">        
+    <ion-content delegate-handle="mainScroll" class="padding">
         <div class="list">
             <div class="item item-button-right">
-                <span>Latitude:</span><span id="lat" >{{lat}}</span><br/>
-                <span>Longitude:</span> <span id="lon" >{{lon}}</span>
+                <span>Latitude:</span><span id="lat" >{{location.lat}}</span><br/>
+                <span>Longitude:</span> <span id="lon" >{{location.lng}}</span>
                 <button ng-click="locate();" class="button button-icon icon ion-pinpoint"></button>
             </div>
 
@@ -19,7 +19,7 @@
 
             <label class="item item-input item-stacked-label">
                 <span class="input-label">Comentário</span>
-                <input type="text" placeholder="Comentário">
+                <input type="text" ng-model="data.comment" placeholder="Comentário">
             </label>
 
         </div>
@@ -33,6 +33,6 @@
 <!--        <p>{{data.imageURI}}</p>-->
 
         <img  id="myImage" style="max-width: 100%">
-        
+
     </ion-content>
 </ion-view>
