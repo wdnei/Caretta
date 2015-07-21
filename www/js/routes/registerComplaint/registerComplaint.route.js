@@ -31,7 +31,7 @@
 
 
     angular
-            .module('app.registerComplaint')
+            .module('app')
             .config(registerComplaintRoute);
 
 })();

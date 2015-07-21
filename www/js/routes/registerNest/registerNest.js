@@ -5,11 +5,11 @@
  */
 (function () {
     'use strict';
-    
+
     /**
      * @ngdoc module
      * @name app.registerNest
      */
-    angular.module('app.registerNest', []);
-    
+  //  angular.module('app.registerNest', []);
+
 })();

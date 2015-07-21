@@ -26,13 +26,13 @@
                         }
                     }
                 });
-                
+
 
     }
 
 
     angular
-            .module('app.registerTurtle')
+            .module('app')
             .config(registerTurtleRoute);
 
 })();

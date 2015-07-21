@@ -5,11 +5,11 @@
  */
 (function () {
     'use strict';
-    
+
     /**
      * @ngdoc module
      * @name app.home
      */
-    angular.module('app.home', []);
-    
+  //  angular.module('app.home', []);
+
 })();

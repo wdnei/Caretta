@@ -24,7 +24,7 @@
                             templateUrl: "js/routes/turtleList/turtleList.html",
                             controller: 'TurtleListCtrl'
                         }
-                    }                   
+                    }
                 }
 
                 );
@@ -33,7 +33,7 @@
 
 
     angular
-            .module('app.turtleList')
+            .module('app')
             .config(turtleListRoute);
 
 })();

@@ -5,11 +5,11 @@
  */
 (function () {
     'use strict';
-    
+
     /**
      * @ngdoc module
      * @name app.identify
      */
-    angular.module('app.identify', []);
-    
+  //  angular.module('app.identify', []);
+
 })();

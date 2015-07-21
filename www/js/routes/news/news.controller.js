@@ -16,7 +16,7 @@
      */
     function NewsCtrl($scope,$rootScope, NewsService,$ionicLoading,$ionicPopup, $ionicScrollDelegate, $window, $http) {
 
-        
+
 
 
 
@@ -27,26 +27,26 @@
 
         $scope.init = function () {
             $scope.showLoad("Carregando...");
+
             $http.get("http://www.tamar.org.br/arquivos/tamar.rss")
                     .success(function (data) {
                         $rootScope.hideLoad();
                         $scope.rssjson = xml2json.parser(data).rss;
                         $scope.items = $scope.rssjson.channel.item;
                         console.log($scope.rssjson.channel);
-                        
+
 
                     })
                     .error(function (data) {
                         $rootScope.hideLoad();
-                        $rootScope.showAlert("Erro",data.error.message)
-                        console.log("ERROR: " + data);
+                        $rootScope.showAlert("Erro ao carregar",data)
+                        console.log("ERROR: ", data);
                     });
         };
 
     }
 
     angular
-            .module('app.news')
-            .controller('NewsCtrl', NewsCtrl);
+            .module('app')
+            .controller('NewsCtrl', ['$scope','$rootScope', 'NewsService','$ionicLoading','$ionicPopup', '$ionicScrollDelegate', '$window', '$http',NewsCtrl]);
 })();
-

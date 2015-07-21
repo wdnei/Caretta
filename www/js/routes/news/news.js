@@ -5,11 +5,11 @@
  */
 (function () {
     'use strict';
-    
+
     /**
      * @ngdoc module
      * @name app.turtleList
      */
-    angular.module('app.news', []);
-    
+    //angular.module('app.news', []);
+
 })();

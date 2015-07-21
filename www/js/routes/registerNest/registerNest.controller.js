@@ -260,7 +260,6 @@
 
 
     angular
-            .module('app.registerNest')
+            .module('app')
             .controller('RegisterNestCtrl', RegisterNestCtrl);
 })();
-

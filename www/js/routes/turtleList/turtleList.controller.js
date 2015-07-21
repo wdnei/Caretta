@@ -19,7 +19,6 @@
     }
 
     angular
-            .module('app.turtleList')
+            .module('app')
             .controller('TurtleListCtrl', TurtleListCtrl);
 })();
-

@@ -25,14 +25,13 @@
             });
 
         $scope.goHome = function ()
-        {   
+        {
             $state.go('app.home');
             return false;
         };
     }
 
     angular
-            .module('app.turtleListView')
+            .module('app')
             .controller('TurtleListViewCtrl', TurtleListViewCtrl);
 })();
-

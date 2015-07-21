@@ -14,13 +14,11 @@
      *
      * @ngInject
      */
-    function HomeCtrl($scope, $state,$ionicScrollDelegate,$location,Container) {
-        $scope.$location = $location;
-        Container.getContainers({where:{id:1}},function(err,result){console.log(err,result)});
+    function HomeCtrl($scope,$state,$ionicScrollDelegate) {
+
     }
 
     angular
-            .module('app.home')
-            .controller('HomeCtrl', HomeCtrl);
+            .module('app')
+            .controller('HomeCtrl', ['$scope','$state','$ionicScrollDelegate',HomeCtrl]);
 })();
-

@@ -15,7 +15,7 @@
      * @ngInject
      */
     function IdentifyCtrl($scope, $state, TurtleService, $ionicScrollDelegate) {
-        $scope.turtleOptions = TurtleService;
+        $scope.turtleService = TurtleService;
         $scope.initialOption = TurtleService.getFirstOption();
         $scope.currentOption=$scope.initialOption;
         $scope.refreshView = function ()
@@ -32,12 +32,12 @@
 
                 if (this.currentOption.nextIdOption1 > 0)
                 {//case there is a next option
-                    this.currentOption = this.turtleOptions.getOption(this.currentOption.nextIdOption1);
+                    this.currentOption = this.turtleService.getOption(this.currentOption.nextIdOption1);
                     this.refreshView();
 
                 } else
                 {//case there is a turtle
-                    console.log(this.turtleOptions.getTurtle(this.currentOption.turtleOption1));
+                    console.log(this.turtleService.getTurtle(this.currentOption.turtleOption1));
 
                     $state.go("app.turtleListView", {"turtleId": this.currentOption.turtleOption1});
                     this.currentOption=this.initialOption;
@@ -47,21 +47,20 @@
             {
                 if (this.currentOption.nextIdOption2 > 0)
                 {//case there is a next option
-                    this.currentOption = this.turtleOptions.getOption(this.currentOption.nextIdOption2);
+                    this.currentOption = this.turtleService.getOption(this.currentOption.nextIdOption2);
                     this.refreshView();
                 } else
                 {//case there is a turtle
-                    console.log(this.turtleOptions.getTurtle(this.currentOption.turtleOption2));
+                    console.log(this.turtleService.getTurtle(this.currentOption.turtleOption2));
                     $state.go("app.turtleListView", { "turtleId": this.currentOption.turtleOption2 });
                     this.currentOption=this.initialOption;
-                    
+
                 }
             }
         };
     }
 
     angular
-            .module('app.identify')
-            .controller('IdentifyCtrl', IdentifyCtrl);
+            .module('app')
+            .controller('IdentifyCtrl', ['$scope', '$state', 'TurtleService', '$ionicScrollDelegate',IdentifyCtrl]);
 })();
-

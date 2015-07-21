@@ -31,7 +31,7 @@
 
 
     angular
-            .module('app.registerNest')
+            .module('app')
             .config(registerNestRoute);
 
 })();

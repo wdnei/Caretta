@@ -3,11 +3,14 @@
   "version": "1.0.0",
   "description": "caretta: An Ionic project",
   "dependencies": {
+    "chai": "^3.2.0",
     "gulp": "^3.5.6",
-    "gulp-sass": "^1.3.3",
     "gulp-concat": "^2.2.0",
     "gulp-minify-css": "^0.3.0",
-    "gulp-rename": "^1.2.0"
+    "gulp-rename": "^1.2.0",
+    "gulp-sass": "^1.3.3",
+    "mocha": "^2.2.5",
+    "request": "^2.59.0"
   },
   "devDependencies": {
     "bower": "^1.3.3",
@@ -18,11 +21,10 @@
     "org.apache.cordova.console",
     "com.ionic.keyboard",
     "org.apache.cordova.device",
-	"org.apache.cordova.geolocation",
-	"org.apache.cordova.camera",
+    "org.apache.cordova.geolocation",
+    "org.apache.cordova.camera",
     "com.synconset.imagepicker",
     "org.apache.cordova.inappbrowser"
-    
   ],
   "cordovaPlatforms": []
 }

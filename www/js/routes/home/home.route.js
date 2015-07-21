@@ -31,7 +31,7 @@
 
 
     angular
-            .module('app.home')
+            .module('app')
             .config(homeRoute);
 
 })();

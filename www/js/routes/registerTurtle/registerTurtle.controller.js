@@ -250,7 +250,7 @@
 
         };
 
-        
+
 
 
         $scope.isValid = function ()
@@ -264,7 +264,7 @@
             {
                 msg += "Data não inserida.</br>";
             }
-            
+
             if ($scope.data.imageURI=="")
             {
                 msg += "Imagem não inserida.</br>";
@@ -356,7 +356,6 @@
 
 
     angular
-            .module('app.registerTurtle')
+            .module('app')
             .controller('RegisterTurtleCtrl', RegisterTurtleCtrl);
 })();
-

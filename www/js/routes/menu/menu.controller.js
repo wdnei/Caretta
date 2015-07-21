@@ -15,17 +15,17 @@
      * @ngInject
      */
     function AppCtrl($scope, $rootScope, $ionicModal, $timeout, User, LoopBackAuth, $ionicLoading, $ionicPopup) {
-        
-        
+
+
         $scope.loadAuth=function (){
-            
+
             if(!$rootScope.isLogged())
             {
                 $rootScope.login();
             }
-            
+
         };
-        
+
         if(!$rootScope.isLogged())
             $scope.loginState="Login"
         else
@@ -33,7 +33,6 @@
     }
 
     angular
-            .module('app.menu')
-            .controller('AppCtrl', AppCtrl);
+            .module('app')
+            .controller('AppCtrl', ['$scope', '$rootScope', '$ionicModal', '$timeout', 'User', 'LoopBackAuth', '$ionicLoading', '$ionicPopup',AppCtrl]);
 })();
-

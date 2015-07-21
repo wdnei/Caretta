@@ -28,7 +28,7 @@
 
 
     angular
-            .module('app.menu')
+            .module('app')
             .config(menuRoute);
 
 })();

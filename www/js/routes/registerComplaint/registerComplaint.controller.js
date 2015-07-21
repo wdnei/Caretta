@@ -250,6 +250,6 @@
 
 
     angular
-            .module('app.registerComplaint')
+            .module('app')
             .controller('RegisterComplaintCtrl', RegisterComplaintCtrl);
 })();

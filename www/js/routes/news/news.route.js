@@ -24,7 +24,7 @@
                             templateUrl: "js/routes/news/news.html",
                             controller: 'NewsCtrl'
                         }
-                    }                   
+                    }
                 }
 
                 );
@@ -33,7 +33,7 @@
 
 
     angular
-            .module('app.news')
+            .module('app')
             .config(newsRoute);
 
 })();

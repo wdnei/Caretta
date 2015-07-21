@@ -31,7 +31,7 @@
 
 
     angular
-            .module('app.turtleListView')
+            .module('app')
             .config(turtleListViewRoute);
 
 })();

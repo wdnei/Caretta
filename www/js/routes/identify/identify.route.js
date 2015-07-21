@@ -31,7 +31,7 @@
 
 
     angular
-            .module('app.identify')
+            .module('app')
             .config(identifyRoute);
 
 })();
