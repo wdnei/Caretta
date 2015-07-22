@@ -18,7 +18,7 @@ Debugar
     2. $ ionic add platform android
     3. $ ionic build android
     4. Instalar no device android
-    5. $  C:\Program Files (x86)\Android\android-studio\sdk\platform-tools\adb.exe install d:\Ionic\caretta\app\platforms\android\build\outputs\apk\android-debug.apk
+    5. $  "C:\Program Files (x86)\Android\android-studio\sdk\platform-tools\adb.exe" install d:\Ionic\caretta\carettaapp\platforms\android\build\outputs\apk\android-debug.apk
 
     6. Então abrir o Chrome pelo link 
     7.  chrome://inspect/#devices

@@ -18,13 +18,14 @@
     "shelljs": "^0.3.0"
   },
   "cordovaPlugins": [
-    "org.apache.cordova.console",
-    "com.ionic.keyboard",
-    "org.apache.cordova.device",
-    "org.apache.cordova.geolocation",
-    "org.apache.cordova.camera",
-    "com.synconset.imagepicker",
-    "org.apache.cordova.inappbrowser"
-  ],
-  "cordovaPlatforms": []
+  "com.ionic.keyboard",
+  "org.apache.cordova.console",
+  "org.apache.cordova.device",
+  "org.apache.cordova.geolocation",
+  "org.apache.cordova.camera",
+  "cordova-plugin-whitelist",
+  "cordova-plugin-inappbrowser"],
+  "cordovaPlatforms": [
+    "android"
+  ]
 }

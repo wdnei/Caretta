@@ -4,9 +4,9 @@
 * @author Wdnei Paixao {@link https://github.com/wdnei/caretta}
 */
 angular.module('app', ['ionic',
-                      'app.core',
-                      'lbServices',
-                      'ngResource'])
+'app.core',
+'lbServices',
+'ngResource'])
 
 .run(function ($ionicPlatform, $timeout, $rootScope, $ionicModal, User, $ionicLoading, $ionicPopup, $state) {
   $ionicPlatform.ready(function () {
@@ -100,13 +100,10 @@ angular.module('app', ['ionic',
       }, function (res) {
         $rootScope.hideLoad();
         // error
-        var erro="Erro ao realizar login";
-
-        if(res.data.error.message)
-        erro=res.data.error.message;
+        var erro="Erro ao realizar login. Verifique sua conexão...";
 
         $rootScope.showAlert("erro", erro);
-        console.log(res);
+        console.log(erro,res);
       });
     }
     catch (err)
@@ -136,24 +133,30 @@ angular.module('app', ['ionic',
 
   // Perform the login action when the user submits the login form
   $rootScope.doSignUp = function () {
-    console.log('Doing SignUp', $rootScope.loginData);
-    $rootScope.showLoad("Registrando o usuário...");
-    console.log(User);
-    var us = User.create({username: $rootScope.loginData.username, email: $rootScope.loginData.email, password: $rootScope.loginData.password, created: new Date()},
-    function (res) {
-      $rootScope.hideLoad();
-      // success
-      $rootScope.showAlert("", "Usuário criado!!");
-      $timeout(function () {
-        $rootScope.closeSignUp();
-      }, 1000);
-      console.log(res);
-    }, function (res) {
-      $rootScope.hideLoad();
-      // error
-      $rootScope.showAlert("Erro", "Ocorreu um erro ao registrar Usuario");
-      console.log(res);
-    });
+    try {
+      console.log('Doing SignUp', $rootScope.loginData);
+      $rootScope.showLoad("Registrando o usuário...");
+      console.log(User);
+      var us = User.create({username: $rootScope.loginData.username, email: $rootScope.loginData.email, password: $rootScope.loginData.password, created: new Date()},
+      function (res) {
+        $rootScope.hideLoad();
+        // success
+        $rootScope.showAlert("", "Usuário criado!!");
+        $timeout(function () {
+          $rootScope.closeSignUp();
+        }, 1000);
+        console.log(res);
+      }, function (res) {
+        $rootScope.hideLoad();
+        // error
+        $rootScope.showAlert("Erro", "Ocorreu um erro ao registrar Usuario");
+        console.log(res);
+      });
+    }
+    catch (err)
+    {
+      $rootScope.showAlert("Erro", err.message);
+    }
     // Simulate a login delay. Remove this and replace with your login
     // code if using a login system
 
