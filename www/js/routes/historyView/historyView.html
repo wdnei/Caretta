@@ -1,0 +1,45 @@
+<ion-view view-title="Histórico" ng-init="init();">
+
+  <ion-content delegate-handle="mainScroll"  class="padding">
+    <div class="bar bar-header item-input-inset">
+      <label class="item-input-wrapper">
+        <i class="icon ion-ios-search placeholder-icon"></i>
+        <input type="search" placeholder="Search">
+      </label>
+      <button class="button button-clear" ng-click="init();">
+        Refresh
+      </button>
+    </div>
+    <div class="list">
+      <label class="item item-input item-select">
+        <div class="input-label">
+          Tipo de Histórico
+        </div>
+        <select ng-model="historyType" ng-change="loadItems()">
+          <option value="turtle">Tartaruga</option>
+          <option value="nest">Ninho</option>
+          <option value="complaint">Denúncia </option>
+        </select>
+      </label>
+      <div class="item item-divider" >
+        Histórico
+      </div>
+    </div>
+
+    <div class="card" ng-repeat="item in items">
+
+      <a class="item item-text-wrap" ng-href="#"  ng-click="open(item)">
+        <p>{{item.when | date:"dd/MM/yyyy 'as' h:mma"}}</p>
+        {{item.comment}}. Ver detalhes...
+      </a>
+
+      <!-- <div class="list" ng-repeat="item in items">
+      <a class="item" ng-click="open(item)" ng-href="#">
+      <img src="">
+      <h2> {{item.when}}</h2>
+      <p>{{item.comment}}</p>
+      </a>
+      </div> -->
+
+    </ion-content>
+  </ion-view>

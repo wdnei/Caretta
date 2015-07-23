@@ -14,7 +14,7 @@
   *
   * @ngInject
   */
-  function RegisterNestCtrl($scope, $rootScope, $http, Nest, APIlb, $ionicPopup, PhotoService) {
+  function RegisterNestCtrl($scope, $rootScope, Nest,UploadService,  $ionicPopup, PhotoService) {
 
 
 
@@ -36,7 +36,7 @@
     $scope.takePicture = function () {
       try {
         PhotoService.takePicture().then(function (imageURI) {
-          console.log(imageURI);
+          //console.log(imageURI);
           $scope.data.imageURI = imageURI;
           var image = document.getElementById('myImage');
           image.src = "data:image/jpeg;base64," + imageURI;
@@ -74,7 +74,7 @@
 
 
         PhotoService.getPhoto(photoDeviceSource.pictureSource.PHOTOLIBRARY).then(function (imageURI) {
-          console.log(imageURI);
+          //console.log(imageURI);
           //                       $ionicPopup.alert({
           //                    title: 'Erro',
           //                    template: imageURI
@@ -162,7 +162,7 @@
     $scope.isValid = function ()
     {
       var msg = "";
-      if ($scope.location.lat == "Desconhecida" || $scope.location.lng == "Desconhecida")
+      if (isNaN($scope.location.lat) || isNaN($scope.location.lng))
       {
         msg += "Localização desconhecida - Ative o GPS.</br>";
       }
@@ -213,11 +213,8 @@
             var currentTime = new Date().toLocaleString().split("/").join("_").split(" ").join("t").split(":").join("_").split(",").join("");
             var fileName = "u_" + $rootScope.currentUser.id + "_d" + currentTime + ".jpg";
             fd.append("myFile", blob, fileName);
-            $http.post(APIlb.url + "/Containers/nest/upload", fd, {
-              transformRequest: angular.identity,
-              headers: {'Content-Type': undefined}
-            })
-            .success(function (res) {
+
+            UploadService.uploadFile(fd,"nest").success(function (res) {
               $rootScope.hideLoad();
               $rootScope.showLoad("Registrando ninho...");
 

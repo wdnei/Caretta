@@ -2,7 +2,7 @@
 * Created by patricksullivan on 11/24/14.
 */
 
-describe("IdentifyCtrl", function() {
+describe("IdentifyCtrl Quando iniciar a pagina", function() {
 
   var scope, controller;
   beforeEach(module('app'));
@@ -24,12 +24,12 @@ describe("IdentifyCtrl", function() {
 
 
 
-    it("should have a scope variable defined", function() {
+    it("Deveria o scope esta definido", function() {
 
       expect(scope).toBeDefined();
     });
 
-    it("initial turtle option has to be defined", function() {
+    it("Deveria a primeira opcao estar carregada", function() {
       expect(scope.initialOption).toBeDefined();
       console.log(scope.initialOption);
     });

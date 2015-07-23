@@ -11,7 +11,7 @@ jasmine.Spec.prototype.removeAllSpies = function() {
 };
 
 
-describe("NewsCtrl", function() {
+describe("NewsCtrl Quando iniciar a pagina", function() {
   var originalTimeout;
   var scope, controller,http;
   var rootScope, q;
@@ -83,7 +83,7 @@ describe("NewsCtrl", function() {
 
 });
 
-describe('Quando NewsService foi carregada com sucesso', function() {
+describe('NewsCtrl Quando NewsService foi carregada com sucesso', function() {
   var originalTimeout;
 
   var $NewsService,scope;
@@ -96,7 +96,7 @@ describe('Quando NewsService foi carregada com sucesso', function() {
   var expectedResponse ={data:"<rss version=\"1.0\"><channel><item>dsfdsf</item><item>dsfdsf</item></channel></rss>"};
   var rootScope,timeout,NewsService;
 
-  
+
   beforeEach(inject(function ($rootScope,$q,$timeout,NewsService) {
 
     originalTimeout = jasmine.DEFAULT_TIMEOUT_INTERVAL;

@@ -14,7 +14,7 @@
   *
   * @ngInject
   */
-  function RegisterComplaintCtrl($scope, $rootScope, $http, Complaint, APIlb, $ionicPopup, PhotoService) {
+  function RegisterComplaintCtrl($scope, $rootScope, Complaint,UploadService, $ionicPopup, PhotoService) {
 
 
 
@@ -22,7 +22,7 @@
     $scope.takePicture = function () {
       try {
         PhotoService.takePicture().then(function (imageURI) {
-          console.log(imageURI);
+        //  console.log(imageURI);
           $scope.data.imageURI = imageURI;
           var image = document.getElementById('myImage');
           image.src = "data:image/jpeg;base64," + imageURI;
@@ -60,7 +60,7 @@
 
 
         PhotoService.getPhoto(photoDeviceSource.pictureSource.PHOTOLIBRARY).then(function (imageURI) {
-          console.log(imageURI);
+          //console.log(imageURI);
           //                       $ionicPopup.alert({
           //                    title: 'Erro',
           //                    template: imageURI
@@ -101,6 +101,8 @@
         comment: "",
         date: new Date()
       };
+
+
 
 
       $scope.location = {};
@@ -152,7 +154,7 @@
     $scope.isValid = function ()
     {
       var msg = "";
-      if ($scope.location.lat == "Desconhecida" || $scope.location.lng == "Desconhecida")
+      if (isNaN($scope.location.lat) || isNaN($scope.location.lng))
       {
         msg += "Localização desconhecida - Ative o GPS.</br>";
       }
@@ -202,11 +204,8 @@
             var currentTime = new Date().toLocaleString().split("/").join("_").split(" ").join("t").split(":").join("_").split(",").join("");
             var fileName = "u_" + $rootScope.currentUser.id + "_d" + currentTime + ".jpg";
             fd.append("myFile", blob, fileName);
-            $http.post(APIlb.url + "/Containers/complaint/upload", fd, {
-              transformRequest: angular.identity,
-              headers: {'Content-Type': undefined}
-            })
-            .success(function (res) {
+          UploadService.uploadFile(fd,"complaint").success(function (res) {
+              $scope.fileSent=true;
               $rootScope.hideLoad();
               $rootScope.showLoad("Registrando denúncia...");
 
@@ -214,6 +213,7 @@
               register.imgUrl = fileUrl;
 
               Complaint.create(register, function (res) {
+                $scope.registerSent=true;
                 $rootScope.hideLoad();
                 // success
 

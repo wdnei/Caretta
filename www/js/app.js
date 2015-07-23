@@ -89,7 +89,7 @@ angular.module('app', ['ionic',
           id: res.user.id,
           tokenId: res.id,
           email: $rootScope.loginData.email,
-          data: res.data
+          service: res
         };
 
         $rootScope.showAlert("", "Usuário Logado!!");
@@ -266,7 +266,7 @@ angular.module('app', ['ionic',
 .config(function (LoopBackResourceProvider) {
 
   // Use a custom auth header instead of the default 'Authorization'
-  // LoopBackResourceProvider.setAuthHeader('X-Access-Token');
+  LoopBackResourceProvider.setAuthHeader('X-Access-Token');
 
   // Change the URL where to access the LoopBack REST API server
   LoopBackResourceProvider.setUrlBase('http://carettalb-caretta.rhcloud.com/api');

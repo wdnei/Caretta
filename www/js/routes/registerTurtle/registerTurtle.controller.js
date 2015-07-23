@@ -14,7 +14,7 @@
   *
   * @ngInject
   */
-  function RegisterTurtleCtrl($scope,$window, $http, APIlb, $rootScope, $ionicPopup, Turtle, PhotoService, TurtleService, $ionicModal, $stateParams, $ionicScrollDelegate) {
+  function RegisterTurtleCtrl($scope,$window,$state,$rootScope, $ionicPopup, Turtle, PhotoService,UploadService, TurtleService, $ionicModal, $stateParams, $ionicScrollDelegate) {
 
 
 
@@ -122,7 +122,7 @@
     $scope.takePicture = function () {
       try {
         PhotoService.takePicture().then(function (imageURI) {
-          console.log(imageURI);
+          //console.log(imageURI);
           $scope.data.imageURI = imageURI;
           var image = document.getElementById('myImage');
           image.src = "data:image/jpeg;base64," + imageURI;
@@ -152,18 +152,12 @@
       try {
 
         var photoDeviceSource = PhotoService.getPhotoSource();
-        //            $ionicPopup.alert({
-        //                    title: 'Erro localização',
-        //                    template: JSON.stringify(photoDeviceSource)
-        //                });
+
 
 
         PhotoService.getPhoto(photoDeviceSource.pictureSource.PHOTOLIBRARY).then(function (imageURI) {
-          console.log(imageURI);
-          //                       $ionicPopup.alert({
-          //                    title: 'Erro',
-          //                    template: imageURI
-          //                });
+          //console.log(imageURI);
+
           $scope.data.imageURI = imageURI;
 
           var image = document.getElementById('myImage');
@@ -172,6 +166,10 @@
 
         }, function (err) {
           console.err(err);
+          $ionicPopup.alert({
+            title: 'Erro',
+            template: err
+          });
         });
 
       } catch (err)
@@ -258,7 +256,7 @@
       if ($rootScope.isLogged())
       {
         var msg = "";
-        if ($scope.location.lat == "Desconhecida" || $scope.location.lng == "Desconhecida")
+        if (isNaN($scope.location.lat) || isNaN($scope.location.lng))
         {
           msg += "Localização desconhecida - Ative o GPS.</br>";
         }
@@ -277,6 +275,7 @@
           $rootScope.showAlert("Dados incompletos!", msg);
           return false;
         }
+        return true;
       } else
       {
         $rootScope.showAlert("", "Usuário necessita estar logado!");
@@ -315,11 +314,8 @@
           var currentTime = new Date().toLocaleString().split("/").join("_").split(" ").join("t").split(":").join("_").split(",").join("");
           var fileName = "u_" + $rootScope.currentUser.id + "_d" + currentTime + ".jpg";
           fd.append("myFile", blob, fileName);
-          $http.post(APIlb.url + "/Containers/turtle/upload", fd, {
-            transformRequest: angular.identity,
-            headers: {'Content-Type': undefined}
-          })
-          .success(function (res) {
+
+          UploadService.uploadFile(fd,"turtle").success(function (res) {
             $rootScope.hideLoad();
             $rootScope.showLoad("Registrando tartaruga...");
 
@@ -328,11 +324,9 @@
 
             Turtle.create(register, function (res) {
               $rootScope.hideLoad();
-              // success
 
               $rootScope.showAlert("Registrado", "Tartaruga Registrada com sucesso");
-
-              $window.location.reload();
+              $state.go('app.home');
 
               console.log(res);
             }, function (err) {
@@ -352,25 +346,21 @@
           });
 
           console.log(register);
-      } else
-      {
-        $rootScope.showAlert("", "Usuário necessita estar logado!");
-        $rootScope.login();
+        }
+
+
       }
+      catch (err)
+      {
+        $rootScope.hideLoad();
+        $rootScope.showAlert("Erro", err.message);
+      }
+    };
+
+  }
 
 
-    }
-    catch (err)
-    {
-      $rootScope.hideLoad();
-      $rootScope.showAlert("Erro", err.message);
-    }
-  };
-
-}
-
-
-angular
-.module('app')
-.controller('RegisterTurtleCtrl', RegisterTurtleCtrl);
+  angular
+  .module('app')
+  .controller('RegisterTurtleCtrl', RegisterTurtleCtrl);
 })();

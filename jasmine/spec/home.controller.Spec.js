@@ -2,7 +2,7 @@
 * Created by patricksullivan on 11/24/14.
 */
 
-describe("HomeCtrl", function() {
+describe("HomeCtrl Quando iniciar a pagina", function() {
 
   var scope, controller;
   beforeEach(module('app'));
@@ -24,7 +24,7 @@ describe("HomeCtrl", function() {
 
 
 
-    it("should have a scope variable defined", function() {
+    it("Deveria o scope esta definido", function() {
 
       expect(scope).toBeDefined();
     });

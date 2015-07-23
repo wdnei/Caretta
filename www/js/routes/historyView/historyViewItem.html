@@ -1,0 +1,43 @@
+<ion-view >
+  <ion-header-bar>
+      <h1 class="title">{{item.when | date:"dd/MM/yyyy 'as' h:mma"}}</h1>
+      <div class="buttons">
+          <button class="button button-clear" ng-click="closeModal()">Fechar</button>
+      </div>
+  </ion-header-bar>
+    <ion-content delegate-handle="mainScroll" class="padding">
+
+        <div class="list card">
+
+            <div class="item item-avatar">
+                <img src="{{APIUrl+item.imgUrl}}">
+                <h2>{{item.userName}}</h2>
+
+
+            </div>
+
+            <div class="item item-body">
+                <img class="full-image" src="{{APIUrl+item.imgUrl}}">
+
+                <p><b>Comentários:</b> {{item.comment}}</p>
+                <!-- <p>
+                    <a href="#" class="subdued">1 Like</a>
+                    <a href="#" class="subdued">5 Comments</a>
+                </p> -->
+            </div>
+
+
+        </div>
+
+
+
+    </ion-content>
+    <ion-footer-bar >
+        <div class="tabs tabs-icon-only">
+            <a class="tab-item" href="#" ng-click="goHome();">
+                <i class="icon ion-home"></i>
+            </a>
+        </div>
+
+    </ion-footer-bar>
+</ion-view>
