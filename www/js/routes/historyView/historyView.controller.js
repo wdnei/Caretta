@@ -18,9 +18,32 @@
 
 
 
-    $scope.historyType = "turtle";
-    $scope.items={};
+    $scope.types=[
+      {id:"turtle",name:"Tartaruga"},
+      {id:"nest",name:"Ninho"},
+      {id:"complaint",name:"Denúncia"}
+    ];
+
+    $scope.historyType=$scope.types[0];
+
+    $scope.items=[];
     $scope.APIUrl=APIlb.url;
+
+    $scope.openMap = function (latitude,longitude) {
+
+      $window.open('geo:0,0?q=' + latitude + ',' + longitude+'(Local)', '_system', 'location=yes');
+
+    };
+
+    $scope.isSet = function (item)
+    {
+      if((typeof item) !=='undefined')
+      {
+        return true;
+      }
+      return false;
+    }
+
 
 
     $scope.init=function(){
@@ -34,9 +57,9 @@
 
         User.findById(req, function (res) {
           console.log("resultado",res);
-          $rootScope.hideLoad();
           $scope.user=res;
-          $scope.loadItems();
+          $scope.loadItems($scope.historyType);
+          $rootScope.hideLoad();
 
         }, function (err) {
           $rootScope.hideLoad();
@@ -54,27 +77,31 @@
         $rootScope.login();
       }
 
+      $scope.$broadcast('scroll.refreshComplete');
+
 
     };
 
 
 
-    $scope.loadItems=function(){
+    $scope.loadItems=function(historyType){
 
-
-      if($scope.historyType == "turtle")
+      $rootScope.showLoad("Carregando Dados...");
+      $scope.historyType=historyType;
+      if($scope.historyType.id == "turtle")
       {
         $scope.items=$scope.user.turtles;
 
 
-      }else if($scope.historyType == "nest")
+      }else if($scope.historyType.id == "nest")
       {
         $scope.items=$scope.user.nests;
-      }else if($scope.historyType == "complaint")
+      }else if($scope.historyType.id == "complaint")
       {
         $scope.items=$scope.user.complaints;
       }
-      $scope.$apply();
+      $rootScope.hideLoad();
+      //  $scope.$apply();
 
 
 

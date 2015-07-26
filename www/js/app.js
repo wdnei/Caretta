@@ -260,7 +260,7 @@ angular.module('app', ['ionic',
 })
 
 .config(function ($compileProvider) {
-  $compileProvider.imgSrcSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|tel):/);
+  $compileProvider.aHrefSanitizationWhitelist(/^\s*(http?|https?|ftp|mailto|geo|blob|file|chrome-extension):/);
 })
 
 .config(function (LoopBackResourceProvider) {

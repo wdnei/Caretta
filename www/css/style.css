@@ -14,7 +14,7 @@
 }
 
 .btSquared{
-   
+
     padding: 10px;
 }
 
@@ -24,4 +24,7 @@
   font-size: 1em;
 }
 
+.paddingButton{
+  padding-left: 10px;
 
+}

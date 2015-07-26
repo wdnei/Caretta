@@ -1,6 +1,10 @@
 <ion-view view-title="Histórico" ng-init="init();">
 
   <ion-content delegate-handle="mainScroll"  class="padding">
+    <ion-refresher
+    pulling-text="Pull to refresh..."
+    on-refresh="init()">
+  </ion-refresher>
     <div class="bar bar-header item-input-inset">
       <label class="item-input-wrapper">
         <i class="icon ion-ios-search placeholder-icon"></i>
@@ -11,15 +15,19 @@
       </button>
     </div>
     <div class="list">
-      <label class="item item-input item-select">
+      <label class="item item-input">
         <div class="input-label">
           Tipo de Histórico
         </div>
-        <select ng-model="historyType" ng-change="loadItems()">
-          <option value="turtle">Tartaruga</option>
-          <option value="nest">Ninho</option>
-          <option value="complaint">Denúncia </option>
-        </select>
+
+        <!-- <select   id="sltSpecie"  ng-model="historyType" ng-options="op as op.name for op in options" ng-change="loadItems()" >
+
+        </select> -->
+
+        <select class="ion-input-select" ng-options="tp as tp.name for tp in types " ng-model="historyType" ng-change="loadItems(historyType)"></select>
+
+
+
       </label>
       <div class="item item-divider" >
         Histórico
@@ -33,13 +41,21 @@
         {{item.comment}}. Ver detalhes...
       </a>
 
+    </div>
+    <div class="card" ng-show="items.length==0" on-swipe-down="init()">
+
+
+      <a  class="item item-text-wrap" ng-href="#"  >
+        <p>  Não há nenhum item para este tipo de dado...</p>
+      </a>
+
       <!-- <div class="list" ng-repeat="item in items">
       <a class="item" ng-click="open(item)" ng-href="#">
       <img src="">
       <h2> {{item.when}}</h2>
       <p>{{item.comment}}</p>
-      </a>
-      </div> -->
+      </a> -->
+    </div>
 
-    </ion-content>
-  </ion-view>
+  </ion-content>
+</ion-view>
