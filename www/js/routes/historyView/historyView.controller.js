@@ -29,9 +29,9 @@
     $scope.items=[];
     $scope.APIUrl=APIlb.url;
 
-    $scope.openMap = function (latitude,longitude) {
+    $scope.openMap = function (item) {
 
-      $window.open('geo:0,0?q=' + latitude + ',' + longitude+'(Local)', '_system', 'location=yes');
+      $window.open("http://maps.google.com/maps?ll="+item.location.lat+","+item.location.lng+"&q="+item.location.lat+","+item.location.lng+"&z=18", '_system', 'location=yes');
 
     };
 

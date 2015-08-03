@@ -83,7 +83,7 @@ describe("NewsCtrl Quando iniciar a pagina", function() {
 
 });
 
-describe('NewsCtrl Quando NewsService foi carregada com sucesso', function() {
+describe('NewsCtrl Quando o servico de news foi carregado com sucesso', function() {
   var originalTimeout;
 
   var $NewsService,scope;
@@ -141,25 +141,25 @@ describe('NewsCtrl Quando NewsService foi carregada com sucesso', function() {
   });
 
 
-  it('Deveria o NewsService.getRSS() ser chamado', function() {
+  it('Deveria o servico ser chamado', function() {
     expect($NewsService.getRSS).toHaveBeenCalled();
 
   });
 
 
 
-  it('Deveria o NewsService.getRSS() esperados', function() {
+  it('Deveria o servico retorna o arquivo rss do site do TAMAR ', function() {
     console.log("result",scope.result);
     expect(scope.result.data).toEqual(expectedResponse.data);
 
   });
 
-  it('Deveria o NewsService.getRSS() retornado os dados', function() {
+  it('Deveria o servico retornado os dados', function() {
     expect(scope.items).toBeDefined();
 
   });
 
-  it('Deveria o NewsService.getRSS() retornado 2 items', function() {
+  it('Deveria o servico ter retornado 2 items', function() {
     expect(scope.items.length).toEqual(2);
 
   });

@@ -4,7 +4,7 @@
   "proxies": [
     {
       "path": "/api",
-      "proxyUrl": "http://carettalb-caretta.rhcloud.com/api"
+      "proxyUrl": "http://carettalb-caretta.rhcloud.com"
     }
   ]
 }

@@ -19,7 +19,7 @@
       <div class="item item-body">
         <img class="full-image" src="{{APIUrl+item.imgUrl}}">
         <p><b>Local:</b>
-          <button class="button button-small button-positive" ng-click="openMap('{{item.location.lat}}','{{item.location.lng}}')">
+          <button class="button button-small button-positive" ng-click="openMap(item)">
             Ver no mapa
           </button>
           <p class="paddingButton"><b>Lat:</b> {{item.location.lat}}
@@ -41,5 +41,5 @@
 
 
   </ion-content>
-  
+
 </ion-view>
