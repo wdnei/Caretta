@@ -14,11 +14,15 @@
      *
      * @ngInject
      */
-    function HomeCtrl($scope,$state,$ionicScrollDelegate) {
+    function HomeCtrl($scope,$state,$ionicHistory,$ionicScrollDelegate) {
+
+      $ionicHistory.nextViewOptions({
+              disableBack: true
+          });
 
     }
 
     angular
             .module('app')
-            .controller('HomeCtrl', ['$scope','$state','$ionicScrollDelegate',HomeCtrl]);
+            .controller('HomeCtrl', ['$scope','$state','$ionicHistory','$ionicScrollDelegate',HomeCtrl]);
 })();

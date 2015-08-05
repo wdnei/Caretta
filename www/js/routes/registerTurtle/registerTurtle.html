@@ -1,55 +1,56 @@
 <ion-view view-title="Registrar Tartaruga" ng-init="init();locate()">
-    <ion-nav-buttons side="right">
-        <button class="button button-clear button-positive" ng-click="send()">Enviar</button>
-    </ion-nav-buttons>
-    <ion-content delegate-handle="mainScroll"  class="padding">        
-        <div class="list">
+  <ion-nav-buttons side="right">
+    <button class="button button-clear button-positive" ng-click="send()">Enviar</button>
+  </ion-nav-buttons>
+  <ion-content delegate-handle="mainScroll"  class="padding">
+    <div class="list">
 
 
 
 
-            <div class="item  ">
-                <span>Espécie:                </span><br/>
-                <select   id="sltSpecie"  ng-model="chosenSpecieId.id" ng-options="cp.id as cp.namePt for cp in turtles" >
-                    <!--                    <option ng-repeat="turtle in turtles" ng-value="{{turtle.id}}">{{turtle.namePt}}</option>                    -->
-                </select>
-                <div style="float: right">
-                    <a  ng-href="#/app/turtleListView/{{chosenSpecieId.id}}"><button class="button button-small">  Ver</button></a>
-
-                    <button  ng-click="identify();" class="button button-small">Identificar</button>
-                </div>
-            </div>
-
-
-            <div class="item item-button-right item-stacked-label">
-                <span>Latitude:</span><span id="lat" >{{location.lat}}</span><br/>
-                <span>Longitude:</span> <span id="lon" >{{location.lng}}</span>
-                <button ng-click="locate();" class="button button-icon icon right ion-android-locate"></button>
-            </div>
+      <div class="item">
+        <div class="input-label">Espécie:</div>
+        <select   id="sltSpecie"  ng-model="chosenSpecieIdSelect.id"  ng-options="cp.id as cp.namePt for cp in turtles" >
+          <!--                    <option ng-repeat="turtle in turtles" ng-value="{{turtle.id}}">{{turtle.namePt}}</option>                    -->
+        </select>
+      </br>
+      <div style="float: right">
+        <button  ng-click="viewTurtle();" class="button button-small">Ver</button>
+        <span>&nbsp;&nbsp;</span>
+        <button  ng-click="identify();" class="button button-small">Identificar</button>
+      </div>
+    </div>
 
 
-            <label class="item item-input item-stacked-label">
-                <span class="input-label">Data e Hora</span>
-                <input type="datetime-local" id="data" name="data" ng-model="data.date"
-                       placeholder="yyyy-MM-ddTHH:mm" min="2001-01-01T00:00" max="2099-12-31T00:00" required />
-            </label>
-
-            <label class="item item-input item-stacked-label">
-                <span class="input-label">Comentário</span>
-                <input type="text" ng-model="data.comment" placeholder="Comentário">
-            </label>
-
-        </div>
-
-        <div class="row">
-            <div class="col"><button ng-click="getPicture()" class="button button-block button-primary">Add Imagem</button></div>
-            <div class="col"><button ng-click="takePicture()" class="button button-block button-primary">Tirar Foto</button></div>
-        </div>
+    <div class="item item-button-right item-stacked-label">
+      <span>Latitude:</span><span id="lat" >{{location.lat}}</span><br/>
+      <span>Longitude:</span> <span id="lon" >{{location.lng}}</span>
+      <button ng-click="locate();" class="button button-icon icon right ion-android-locate"></button>
+    </div>
 
 
-        <!--        <p>{{data.imageURI}}</p>-->
+    <label class="item item-input item-stacked-label">
+      <span class="input-label">Data e Hora</span>
+      <input type="datetime-local" id="data" name="data" ng-model="data.date"
+      placeholder="yyyy-MM-ddTHH:mm" min="2001-01-01T00:00" max="2099-12-31T00:00" required />
+    </label>
 
-        <img  id="myImage" style="max-width: 100%">
+    <label class="item item-input item-stacked-label">
+      <span class="input-label">Comentário</span>
+      <input type="text" ng-model="data.comment" placeholder="Comentário">
+    </label>
 
-    </ion-content>
+  </div>
+
+  <div class="row">
+    <div class="col"><button ng-click="getPicture()" class="button button-block button-primary">Add Imagem</button></div>
+    <div class="col"><button ng-click="takePicture()" class="button button-block button-primary">Tirar Foto</button></div>
+  </div>
+
+
+  <!--        <p>{{data.imageURI}}</p>-->
+
+  <img  id="myImage" style="max-width: 100%">
+
+</ion-content>
 </ion-view>

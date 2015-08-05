@@ -14,7 +14,7 @@
   *
   * @ngInject
   */
-  function RegisterComplaintCtrl($scope, $rootScope, Complaint,UploadService, $ionicPopup, PhotoService) {
+  function RegisterComplaintCtrl($scope,$state, $rootScope, Complaint,UploadService, $ionicPopup, PhotoService) {
 
 
 
@@ -22,7 +22,7 @@
     $scope.takePicture = function () {
       try {
         PhotoService.takePicture().then(function (imageURI) {
-        //  console.log(imageURI);
+          //  console.log(imageURI);
           $scope.data.imageURI = imageURI;
           var image = document.getElementById('myImage');
           image.src = "data:image/jpeg;base64," + imageURI;
@@ -158,7 +158,7 @@
       {
         msg += "Localização desconhecida - Ative o GPS.</br>";
       }
-      if ($scope.data.date == "")
+      if (!$scope.data.date)
       {
         msg += "Data não inserida.</br>";
       }
@@ -204,7 +204,7 @@
             var currentTime = new Date().toLocaleString().split("/").join("_").split(" ").join("t").split(":").join("_").split(",").join("");
             var fileName = "u_" + $rootScope.currentUser.id + "_d" + currentTime + ".jpg";
             fd.append("myFile", blob, fileName);
-          UploadService.uploadFile(fd,"complaint").success(function (res) {
+            UploadService.uploadFile(fd,"complaint").success(function (res) {
               $scope.fileSent=true;
               $rootScope.hideLoad();
               $rootScope.showLoad("Registrando denúncia...");
@@ -218,20 +218,22 @@
                 // success
 
                 $rootScope.showAlert("Registrado", "Denúncia registrada com sucesso!");
+                $scope.cleanData();
+                $state.go('app.home');
 
                 console.log(res);
               }, function (res) {
                 $rootScope.hideLoad();
                 // error
-                var erro = "Erro ao realizar registro!";
+                var erro = "Erro ao realizar registro:"+$rootScope.erroMessage(res);
 
-                $rootScope.showAlert(erro, res.status);
+                $rootScope.showAlert("Erro", erro);
                 console.log(res);
               });
 
             })
             .error(function (res) {
-              $rootScope.showAlert("Erro", "Ocorreu um erro ao realizar upload do arquivo!");
+              $rootScope.showAlert("Erro", "Ocorreu um erro ao realizar upload do arquivo:"+$rootScope.erroMessage(res));
               console.log(res);
               $rootScope.hideLoad();
             });
@@ -252,6 +254,15 @@
         $rootScope.showAlert("Erro", err.message);
       }
     };
+
+    $scope.cleanData=function()
+    {
+      $scope.init();
+      $scope.locate();
+      var image = document.getElementById('myImage');
+      image.src = "";
+
+    }
 
   }
 

@@ -16,7 +16,7 @@ Instalar prototipo
 Debugar
     1. Na pasta do App Ionic e gere o arquivo .apk android
     2. $ ionic add platform android
-    3. $ ionic build android
+    3. $ cordova build 
     4. Instalar no device android
     5. $  "C:\Program Files (x86)\Android\android-studio\sdk\platform-tools\adb.exe" install d:\Ionic\caretta\carettaapp\platforms\android\build\outputs\apk\android-debug.apk
 

@@ -100,7 +100,7 @@ angular.module('app', ['ionic',
       }, function (res) {
         $rootScope.hideLoad();
         // error
-        var erro="Erro ao realizar login. Verifique sua conexão...";
+        var erro="Erro ao realizar login:"+$rootScope.erroMessage(res);
 
         $rootScope.showAlert("erro", erro);
         console.log(erro,res);
@@ -149,7 +149,7 @@ angular.module('app', ['ionic',
       }, function (res) {
         $rootScope.hideLoad();
         // error
-        $rootScope.showAlert("Erro", "Ocorreu um erro ao registrar Usuario");
+        $rootScope.showAlert("Erro", "Ocorreu um erro ao registrar Usuario:"+$rootScope.erroMessage(res));
         console.log(res);
       });
     }
@@ -165,7 +165,7 @@ angular.module('app', ['ionic',
   $rootScope.isLogged = function ()
   {
     return $rootScope.currentUser != null;
-  }
+  };
 
 
   $rootScope.dataURItoBlob = function (dataURI) {
@@ -175,7 +175,42 @@ angular.module('app', ['ionic',
       array.push(binary.charCodeAt(i));
     }
     return new Blob([new Uint8Array(array)], {type: 'image/jpeg'});
+  };
+
+
+  $rootScope.erroMessage=function(err,data){
+    var message="";
+
+    if(err.status==0)
+    {
+      return "Falha ao realizar ação. Verifique sua conexão!";
+    }
+
+    if(err.status==422)
+    {
+      return err.data.error.message;
+    }
+    if(err.status==404)
+    {
+      return "Dados não encontrado!";
+    }
+    if(err.status==401)
+    {
+      return "Usuário não autorizados";
+    }else {
+      if(err.data && err.data.error)
+      {
+        return err.data.error.message;
+      }
+    }
+    return message;
   }
+
+
+
+
+
+
 
 
 })

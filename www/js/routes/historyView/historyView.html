@@ -8,7 +8,7 @@
     <div class="bar bar-header item-input-inset">
       <label class="item-input-wrapper">
         <i class="icon ion-ios-search placeholder-icon"></i>
-        <input type="search" placeholder="Search">
+        <input type="search" ng-model="searchText" placeholder="Search">
       </label>
       <button class="button button-clear" ng-click="init();">
         Refresh
@@ -34,7 +34,7 @@
       </div>
     </div>
 
-    <div class="card" ng-repeat="item in items">
+    <div class="card" ng-repeat="item in items | filter:searchText">
 
       <a class="item item-text-wrap" ng-href="#"  ng-click="open(item)">
         <p>{{item.when | date:"dd/MM/yyyy 'as' h:mma"}}</p>

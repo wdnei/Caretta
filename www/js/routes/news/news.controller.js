@@ -14,7 +14,7 @@
   *
   * @ngInject
   */
-  function NewsCtrl($scope,$rootScope, NewsService,$ionicLoading,$ionicPopup, $ionicScrollDelegate, $window) {
+  function NewsCtrl($scope,$rootScope,NewsService, $ionicLoading,$ionicPopup, $ionicScrollDelegate, $window) {
 
 
 
@@ -29,21 +29,6 @@
       $scope.showLoad("Carregando...");
       try{
 
-        // $http.get("http://www.tamar.org.br/arquivos/tamar.rss")
-        //         .success(function (data) {
-        //             $rootScope.hideLoad();
-        //             $scope.rssjson = xml2json.parser(data).rss;
-        //             $scope.items = $scope.rssjson.channel.item;
-        //             console.log($scope.rssjson.channel);
-        //
-        //
-        //         })
-        //         .error(function (data) {
-        //             $rootScope.hideLoad();
-        //             $rootScope.showAlert("Erro ao carregar",data)
-        //             console.log("ERROR: ", data);
-        //         });
-
         NewsService.getRSS()
         // on success...
         .then(function(result) {
@@ -55,10 +40,10 @@
           console.log($scope.rssjson.channel);
         },
         // on failure...
-        function(errorMsg) {
+        function(res) {
           $rootScope.hideLoad();
-          $rootScope.showAlert("Erro ao carregar News",errorMsg)
-          console.log("ERROR: ", errorMsg);
+          $rootScope.showAlert("Erro ao carregar News",$rootScope.erroMessage(res))
+          console.log("ERROR: ", res);
         });
 
       }

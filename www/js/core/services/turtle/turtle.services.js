@@ -10,7 +10,7 @@
      * @ngdoc service
      * @name TurtleService
      * @module app.core
-     * 
+     *
      * @description
      * Service to get the turtle data.
      *
@@ -23,7 +23,7 @@
         var turtles = [{
                 id: 0,
                 nameLt: 'Dermochelys coriacea',
-                namePt: 'Tartaruga de Couro ou Gigante',
+                namePt: 'Tartaruga de Couro',
                 names: 'Tartaruga de Couro ou Gigante (Pt), Leatherback Turtle (En), Tortue Luth (Fr), Tortuga Laúd ou Baula (Sp).',
                 img: 'img/dermochelys-coriacea-1.jpg'
             }, {
@@ -122,14 +122,15 @@
 
         return {
             allOptions: function () {
-                return turtleOptions;
+                return turtleOptions.slice();
             },
             allTurtles: function () {
-                return turtles;
+                return turtles.slice();
             },
             getTurtle: function (turtleId) {
                 for (var i = 0; i < turtles.length; i++) {
-                    if (turtles[i].id === parseInt(turtleId)) {
+                    var id=turtles[i].id;
+                    if (id == turtleId) {
                         return turtles[i];
                     }
                 }
@@ -137,7 +138,7 @@
             },
             getOption: function (optionId) {
                 for (var i = 0; i < turtleOptions.length; i++) {
-                    if (turtleOptions[i].id === parseInt(optionId)) {
+                    if (turtleOptions[i].id == optionId) {
                         return turtleOptions[i];
                     }
                 }
@@ -154,4 +155,3 @@
             .factory('TurtleService', TurtleService);
 
 })();
-

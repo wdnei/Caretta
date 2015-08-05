@@ -90,20 +90,34 @@
       $scope.historyType=historyType;
       if($scope.historyType.id == "turtle")
       {
+        $scope.user.turtles.sort(function(a,b){
+          // Turn your strings into dates, and then subtract them
+          // to get a value that is either negative, positive, or zero.
+          return new Date(b.when) - new Date(a.when);
+        });
+
         $scope.items=$scope.user.turtles;
 
 
       }else if($scope.historyType.id == "nest")
       {
+        $scope.user.nests.sort(function(a,b){
+          // Turn your strings into dates, and then subtract them
+          // to get a value that is either negative, positive, or zero.
+          return new Date(b.when) - new Date(a.when);
+        });
+
         $scope.items=$scope.user.nests;
       }else if($scope.historyType.id == "complaint")
       {
+        $scope.user.complaints.sort(function(a,b){
+          // Turn your strings into dates, and then subtract them
+          // to get a value that is either negative, positive, or zero.
+          return new Date(b.when) - new Date(a.when);
+        });
         $scope.items=$scope.user.complaints;
       }
       $rootScope.hideLoad();
-      //  $scope.$apply();
-
-
 
     }
 

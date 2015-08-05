@@ -45,12 +45,12 @@
 
     };
 
-
+    $scope.chosenSpecieIdSelect={};
     if ($stateParams.turtleId > 0)
     {
-      $scope.chosenSpecieId = $scope.findTurtle($stateParams.turtleId);
+      $scope.chosenSpecieIdSelect.id = $scope.findTurtle($stateParams.turtleId).id;
     } else {
-      $scope.chosenSpecieId = $scope.turtles[0];
+      $scope.chosenSpecieIdSelect.id = $scope.turtles[0].id;
 
     }
 
@@ -68,6 +68,7 @@
           $scope.modal.hide();
 
           $scope.chosenSpecieId = $scope.findTurtle(this.currentOption.turtleOption1);
+          $scope.setTurtleOnSelect($scope.chosenSpecieId.id);
           console.log($scope.chosenSpecieId);
           this.currentOption = this.initialOption;
           $scope.$apply();
@@ -86,6 +87,7 @@
 
           $scope.modal.hide();
           $scope.chosenSpecieId = $scope.findTurtle(this.currentOption.turtleOption2);//$scope.findTurtle(this.currentOption.turtleOption2);
+          $scope.setTurtleOnSelect($scope.chosenSpecieId.id);
           this.currentOption = this.initialOption;
           $scope.$apply();
 
@@ -248,6 +250,16 @@
 
     };
 
+    $scope.setTurtleOnSelect=function(id)
+    {
+      $scope.chosenSpecieIdSelect.id = $scope.findTurtle(id).id;
+    };
+
+    $scope.viewTurtle=function(id)
+    {
+      $state.go("app.turtleListView",{turtleId:$scope.chosenSpecieIdSelect.id},{reload:true});
+
+    }
 
 
 
@@ -260,7 +272,7 @@
         {
           msg += "Localização desconhecida - Ative o GPS.</br>";
         }
-        if ($scope.data.date=="")
+        if (!$scope.data.date)
         {
           msg += "Data não inserida.</br>";
         }
@@ -299,8 +311,8 @@
             comment: $scope.data.comment,
             when: $scope.data.date,
             location: {lat: $scope.location.lat, lng: $scope.location.lng},
-            specieId: $scope.chosenSpecieId.id,
-            specie: $scope.chosenSpecieId.nameLt,
+            specieId: $scope.chosenSpecieIdSelect.id,
+            specie: $scope.findTurtle($scope.chosenSpecieIdSelect.id).nameLt,
             userName: $rootScope.currentUser.email,
             imgUrl: "",
             userId: $rootScope.currentUser.id
@@ -326,21 +338,25 @@
               $rootScope.hideLoad();
 
               $rootScope.showAlert("Registrado", "Tartaruga Registrada com sucesso");
-              $state.go('app.home');
+              $scope.cleanData();
+              $state.reload();
+              //$state.go('app.home');
 
               console.log(res);
             }, function (err) {
               $rootScope.hideLoad();
               // error
-              var erro = "Erro ao realizar registro!";
+              var erro = "Erro ao realizar registro:";
 
-              $rootScope.showAlert(erro, err.status);
+              erro+=$rootScope.erroMessage(err);
+
+              $rootScope.showAlert("Erro", erro);
               console.log(res);
             });
 
           })
           .error(function (res) {
-            $rootScope.showAlert("Erro", "Ocorreu um erro ao realizar upload do arquivo!");
+            $rootScope.showAlert("Erro", "Ocorreu um erro ao realizar upload do arquivo:"+ $rootScope.erroMessage(res));
             console.log(res);
             $rootScope.hideLoad();
           });
@@ -356,6 +372,21 @@
         $rootScope.showAlert("Erro", err.message);
       }
     };
+
+    $scope.changedTurtle=function(chosenSpecieIdSelect){
+      $scope.setTurtleOnSelect(chosenSpecieIdSelect);
+      $scope.$apply();
+    };
+    $scope.cleanData=function()
+    {
+      $scope.init();
+      $scope.locate();
+      var image = document.getElementById('myImage');
+      image.src = "";
+
+    }
+
+
 
   }
 

@@ -14,7 +14,7 @@
   *
   * @ngInject
   */
-  function RegisterNestCtrl($scope, $rootScope, Nest,UploadService,  $ionicPopup, PhotoService) {
+  function RegisterNestCtrl($scope,$state, $rootScope, Nest,UploadService, $ionicPopup, PhotoService) {
 
 
 
@@ -28,10 +28,6 @@
       lat: "",
       lng: ""
     }
-
-
-
-
 
     $scope.takePicture = function () {
       try {
@@ -166,7 +162,7 @@
       {
         msg += "Localização desconhecida - Ative o GPS.</br>";
       }
-      if ($scope.data.date == "")
+      if (!$scope.data.date)
       {
         msg += "Data não inserida.</br>";
       }
@@ -226,20 +222,21 @@
                 // success
 
                 $rootScope.showAlert("Registrado", "Ninho registrado com sucesso!");
-
+                $scope.cleanData();
+                $state.go('app.home');
                 console.log(res);
               }, function (res) {
                 $rootScope.hideLoad();
                 // error
-                var erro = "Erro ao realizar registro!";
+                var erro = "Erro ao realizar registro:"+$rootScope.erroMessage(res);
 
-                $rootScope.showAlert(erro, res.status);
+                $rootScope.showAlert("Erro",erro);
                 console.log(res);
               });
 
             })
             .error(function (res) {
-              $rootScope.showAlert("Erro", "Ocorreu um erro ao realizar upload do arquivo!");
+              $rootScope.showAlert("Erro", "Ocorreu um erro ao realizar upload do arquivo:"+$rootScope.erroMessage(res));
               console.log(res);
               $rootScope.hideLoad();
             });
@@ -248,7 +245,7 @@
           }
         } else
         {
-          $rootScope.showAlert("", "Usuário necessita estar logado!");
+          $rootScope.showAlert("Erro", "Usuário necessita estar logado!");
           $rootScope.login();
         }
 
@@ -260,6 +257,16 @@
         $rootScope.showAlert("Erro", err.message);
       }
     };
+
+
+    $scope.cleanData=function()
+    {
+      $scope.init();
+      $scope.locate();
+      var image = document.getElementById('myImage');
+      image.src = "";
+
+    }
 
   }
 
