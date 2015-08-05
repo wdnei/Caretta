@@ -15,7 +15,7 @@
   * @ngInject
   */
   function NewsCtrl($scope,$rootScope,NewsService, $ionicLoading,$ionicPopup, $ionicScrollDelegate, $window) {
-
+    $scope.items=[];
 
 
 
