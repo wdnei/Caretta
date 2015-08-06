@@ -1,5 +1,5 @@
 /**
-* Register Turtle controller.
+* Register Turtle, Complaint, Nest controller.
 *
 * @author Wdnei Paixao {@link https://github.com/wdnei/caretta}
 */
@@ -7,10 +7,10 @@
   //'use strict';
   /**
   * @ngdoc controller
-  * @name RegisterTurtleCtrl
+  * @name RegisterCtrl
   * @module app.registerTurtle
   * @description
-  * Controller for the to register a turtle page.
+  * Controller to register a turtle,a nest or a complaint .
   *
   * @ngInject
   */
@@ -191,7 +191,7 @@
       $scope.data.imageURI = imageURI;
       $scope.imageSrc="data:image/jpeg;base64," + imageURI;
       $rootScope.showLoad("Carregando...");
-      //$scope.$apply();
+
     }
 
     $scope.getPicture = function () {
@@ -209,12 +209,7 @@
 
 
         PhotoService.getPhoto(photoDeviceSource.pictureSource.PHOTOLIBRARY).then(function (imageURI) {
-          //console.log(imageURI);
-
           $scope.setImage(imageURI);
-          //var image = document.getElementById('myImage');
-          //image.src = "data:image/jpeg;base64," + imageURI;
-          //$scope.$apply();
 
         }, function (err) {
           console.log(err);
@@ -259,7 +254,7 @@
 
 
     /**
-    * Center map on user's current position
+    * user's current position
     */
     $scope.locate = function () {
 

@@ -1,5 +1,5 @@
 /**
- * RegisterTurtle route.
+ * Register route.
  *
  * @author Wdnei Paixao {@link https://github.com/wdnei/caretta}
  */
@@ -7,11 +7,11 @@
    // 'use strict';
     /**
      * @ngdoc object
-     * @name registerTurtleRoute
-     * @module app.registerTurtle
+     * @name registerRoute
+     * @module app.registerurtle
      * @requires $stateProvider
      * @description
-     * Router for the register turtle page.
+     * Router for the register turtle,nest and complaint page.
      *
      *
      */
