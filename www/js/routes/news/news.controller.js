@@ -25,6 +25,10 @@
       return false;
     };
 
+    $scope.toDate=function(str){
+      return new Date(str);
+    };
+
     $scope.init = function () {
       $scope.showLoad("Carregando...");
       try{
@@ -41,6 +45,7 @@
         },
         // on failure...
         function(res) {
+          $scope.items=[];
           $rootScope.hideLoad();
           $rootScope.showAlert("Erro ao carregar News",$rootScope.erroMessage(res))
           console.log("ERROR: ", res);
@@ -49,9 +54,11 @@
       }
       catch (err)
       {
+        $scope.items=[];
         $rootScope.hideLoad();
         $rootScope.showAlert("Erro", err.message);
       }
+      $scope.$broadcast('scroll.refreshComplete');
     };
 
   }

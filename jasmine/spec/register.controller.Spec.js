@@ -11,9 +11,9 @@ jasmine.Spec.prototype.removeAllSpies = function() {
 };
 
 
-describe("TurtleCtrl Enviar registro de tartaruga", function() {
+describe("Enviar registro de tartaruga", function() {
   var originalTimeout;
-  var scope, controller,http;
+  var scope, controller,http,stateParams;
   var rootScope, q;
   var httpBackend;
   var spyObj;
@@ -37,17 +37,20 @@ describe("TurtleCtrl Enviar registro de tartaruga", function() {
     $ionicPopup,
     $window,
     $http,
+    $stateParams,
     Turtle,
     UploadService
   ) {
     rootScope=$rootScope;
     $UploadService=UploadService;
-    $Turtle=Turtle;
 
     scope = $rootScope.$new();
 
     $Turtle=Turtle;
 
+    stateParams=$stateParams;
+    $stateParams.turtleId=-1;
+    $stateParams.registerType="t";
 
     //Que o usuario esteja logado
     spyOn(rootScope,"isLogged").and.callFake(function(){
@@ -85,7 +88,7 @@ describe("TurtleCtrl Enviar registro de tartaruga", function() {
 
 
 
-    controller = $controller('RegisterTurtleCtrl', {
+    controller = $controller('RegisterCtrl', {
       $scope:scope,
       $rootScope:$rootScope,
       $ionicLoading:$ionicLoading,
@@ -93,7 +96,8 @@ describe("TurtleCtrl Enviar registro de tartaruga", function() {
       $ionicScrollDelegate,
       $window:$window,
       UploadService:$UploadService,
-      Turtle:$Turtle
+      $Turtle:$Turtle,
+      $stateParams:stateParams
     });
 
     spyOn(scope,"init").and.callThrough();

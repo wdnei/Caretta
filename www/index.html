@@ -1,92 +1,98 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
-        <meta http-equiv="Content-Security-Policy" content="default-src *;
- style-src &apos;self&apos; &apos;unsafe-inline&apos;; script-src &apos;self&apos; &apos;unsafe-inline&apos;
- &apos;unsafe-eval&apos;">
-        <title></title>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+  <meta http-equiv="Content-Security-Policy" content="default-src *;
+  style-src &apos;self&apos; &apos;unsafe-inline&apos;; script-src &apos;self&apos; &apos;unsafe-inline&apos;
+  &apos;unsafe-eval&apos;">
+  <title></title>
 
-        <link href="lib/ionic/css/ionic.css" rel="stylesheet">
-        <link href="css/style.css" rel="stylesheet">
-        <link rel="alternate" type="application/rss+xml" href="http://www.xul.fr/rss.xml" title="Your title">
+  <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+  <link rel="alternate" type="application/rss+xml" href="http://www.xul.fr/rss.xml" title="Your title">
 
-        <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
-        <link href="css/ionic.app.css" rel="stylesheet">
-        -->
-        <script src="js/xml2json.js" type="text/javascript"></script>
-        <!-- ionic/angularjs js -->
-        <script src="lib/ionic/js/ionic.bundle.js"></script>
+  <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
+  <link href="css/ionic.app.css" rel="stylesheet">
+  -->
+  <script src="js/xml2json.js" type="text/javascript"></script>
+  <!-- ionic/angularjs js -->
+  <script src="lib/ionic/js/ionic.bundle.js"></script>
 
-        <!-- cordova script (this will be a 404 during development) -->
-        <!-- // <script src="lib/ngCordova/dist/ng-cordova.js"></script> -->
-        <script src="cordova.js"></script>
-
-
-        <script src="lib/ionic/js/angular/angular-resource.min.js"></script>
-        <!-- your app's js -->
-        <script src="js/app.js"></script>
-
-        <script src="js/core/core.js"></script>
-        <script src="js/core/services/util/util.services.js"></script>
-        <script src="js/core/services/turtle/turtle.services.js"></script>
-        <script src="js/core/services/news/news.services.js"></script>
-
-        <script src="js/core/services/location/locations.services.js"></script>
-        <script src="js/core/services/instructions/instructions.services.js"></script>
-        <script src="js/core/services/photo/photo.services.js"></script>
-        <script src="js/core/services/upload/upload.services.js"></script>
-        <script src="js/core/services/loopback/loopback.services.js"></script>
+  <!-- cordova script (this will be a 404 during development) -->
+  <!-- // <script src="lib/ngCordova/dist/ng-cordova.js"></script> -->
+  <script src="cordova.js"></script>
 
 
-        <script src="js/routes/menu/menu.route.js"></script>
-        <script src="js/routes/menu/menu.controller.js"></script>
+  <script src="lib/ionic/js/angular/angular-resource.min.js"></script>
+  <!-- your app's js -->
+  <script src="js/app.js"></script>
+
+  <script src="js/core/core.js"></script>
+  <script src="js/core/services/util/util.services.js"></script>
+  <script src="js/core/services/turtle/turtle.services.js"></script>
+  <script src="js/core/services/news/news.services.js"></script>
+
+  <script src="js/core/services/location/locations.services.js"></script>
+  <script src="js/core/services/instructions/instructions.services.js"></script>
+  <script src="js/core/services/photo/photo.services.js"></script>
+  <script src="js/core/services/upload/upload.services.js"></script>
+  <script src="js/core/services/loopback/loopback.services.js"></script>
 
 
-        <script src="js/routes/home/home.route.js"></script>
-        <script src="js/routes/home/home.controller.js"></script>
+  <script src="js/routes/menu/menu.route.js"></script>
+  <script src="js/routes/menu/menu.controller.js"></script>
 
 
-        <script src="js/routes/registerNest/registerNest.route.js"></script>
-        <script src="js/routes/registerNest/registerNest.controller.js"></script>
-
-
-        <script src="js/routes/registerComplaint/registerComplaint.route.js"></script>
-        <script src="js/routes/registerComplaint/registerComplaint.controller.js"></script>
-
-
-        <script src="js/routes/identify/identify.route.js"></script>
-        <script src="js/routes/identify/identify.controller.js"></script>
-
-
-        <script src="js/routes/turtleList/turtleList.route.js"></script>
-        <script src="js/routes/turtleList/turtleList.controller.js"></script>
-
-
-        <script src="js/routes/turtleListView/turtleListView.route.js"></script>
-        <script src="js/routes/turtleListView/turtleListView.controller.js"></script>
+  <script src="js/routes/home/home.route.js"></script>
+  <script src="js/routes/home/home.controller.js"></script>
 
 
 
-        <script src="js/routes/registerTurtle/registerTurtle.route.js"></script>
-        <script src="js/routes/registerTurtle/registerTurtle.controller.js"></script>
-
-        <script src="js/routes/historyView/historyView.route.js"></script>
-        <script src="js/routes/historyView/historyView.controller.js"></script>
+  <script src="js/routes/identify/identify.route.js"></script>
+  <script src="js/routes/identify/identify.controller.js"></script>
 
 
-        <script src="js/routes/news/news.route.js"></script>
-        <script src="js/routes/news/news.controller.js"></script>
+  <script src="js/routes/turtleList/turtleList.route.js"></script>
+  <script src="js/routes/turtleList/turtleList.controller.js"></script>
 
-        <script src="js/routes/register/register.route.js"></script>
-        <script src="js/routes/register/register.controller.js"></script>
 
-        <!--    <script src="js/controllers.js"></script>
-            <script src="js/services.js"></script>-->
-    </head>
+  <script src="js/routes/turtleListView/turtleListView.route.js"></script>
+  <script src="js/routes/turtleListView/turtleListView.controller.js"></script>
 
-    <body ng-app="app">
-    <ion-nav-view></ion-nav-view>
+
+
+
+  <script src="js/routes/historyView/historyView.route.js"></script>
+  <script src="js/routes/historyView/historyView.controller.js"></script>
+
+
+  <script src="js/routes/news/news.route.js"></script>
+  <script src="js/routes/news/news.controller.js"></script>
+
+  <script src="js/routes/register/register.route.js"></script>
+  <script src="js/routes/register/register.controller.js"></script>
+
+  <script src="js/routes/about/about.route.js"></script>
+  <script src="js/routes/about/about.controller.js"></script>
+
+  <!--    <script src="js/controllers.js"></script>
+  <script src="js/services.js"></script>-->
+
+  <!-- obsolete // <script src="js/routes/registerNest/registerNest.route.js"></script>
+  // <script src="js/routes/registerNest/registerNest.controller.js"></script>
+  //
+  //
+  // <script src="js/routes/registerComplaint/registerComplaint.route.js"></script>
+  // <script src="js/routes/registerComplaint/registerComplaint.controller.js"></script>
+  //
+  //
+  // <script src="js/routes/registerTurtle/registerTurtle.route.js"></script>
+  // <script src="js/routes/registerTurtle/registerTurtle.controller.js"></script> -->
+
+</head>
+
+<body ng-app="app">
+  <ion-nav-view></ion-nav-view>
 </body>
 </html>

@@ -49,7 +49,6 @@
 
       $scope.turtles = TurtleService.allTurtles();
 
-
       $scope.turtleOptions = TurtleService;
       $scope.initialOption = TurtleService.getFirstOption();
       $scope.currentOption = $scope.initialOption;
@@ -174,7 +173,7 @@
           $scope.setImage(imageURI);
 
         }, function (err) {
-          console.err(err);
+          console.log(err);
         });
       } catch (err)
       {
@@ -191,6 +190,7 @@
     {
       $scope.data.imageURI = imageURI;
       $scope.imageSrc="data:image/jpeg;base64," + imageURI;
+      $rootScope.showLoad("Carregando...");
       //$scope.$apply();
     }
 
@@ -217,7 +217,7 @@
           //$scope.$apply();
 
         }, function (err) {
-          console.err(err);
+          console.log(err);
           $ionicPopup.alert({
             title: 'Erro',
             template: err
@@ -248,7 +248,7 @@
         date: new Date()
       };
 
-
+      $scope.imageSrc="";
 
       $scope.image = {};
       $scope.location = {};
@@ -384,7 +384,7 @@
               $rootScope.showAlert("Registrar "+$scope.title, "Envio realizado com sucesso!");
               $scope.cleanData();
               $state.reload();
-              //$state.go('app.home');
+              $state.go('app.home');
 
               console.log(res);
             }, function (err) {
@@ -420,8 +420,7 @@
     {
       $scope.init();
       $scope.locate();
-      var image = document.getElementById('myImage');
-      image.src = "";
+
 
     }
 

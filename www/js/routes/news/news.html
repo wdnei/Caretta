@@ -1,23 +1,26 @@
 <ion-view ng-init="init()" view-title="News TAMAR">
   <ion-content delegate-handle="mainScroll" class="padding">
     <ion-refresher
-    pulling-text="Pull to refresh..."
+    pulling-text="Puxe para atualizar..."
     on-refresh="init()">
   </ion-refresher>
 
 
-
+  <span ng-show="items.length<=0">Puxe para atualizar... </br></span>
   <div class="card" ng-repeat="item in items">
 
     <a class="item item-text-wrap" ng-href="#"  ng-click="goTo('{{item.link}}')">
-      <p>{{item.pubdate}}</p>
+      <p>{{toDate(item.pubdate) | date:"dd/MM/yyyy"}}</p>
       {{item.title}}. Ver detalhes...
     </a>
-    
+
   </div>
 
-
-
+  <div class="card" ng-show="items.length<=0" >
+    <a class="item item-text-wrap" ng-href="#">
+      Nenhum item recuperado...
+    </a>
+  </div>
 
 </ion-content>
 </ion-view>

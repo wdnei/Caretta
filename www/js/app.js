@@ -314,7 +314,17 @@ angular.module('app', ['ionic',
 
 .constant("APIlb", {
   "url": "http://carettalb-caretta.rhcloud.com/api"
-});
+}).directive('imageonload', function() {
+        return {
+            restrict: 'A',
+            link: function(scope, element, attrs) {
+                element.bind('load', function() {
+                    //call the function that was passed
+                    scope.$apply(attrs.imageonload);
+                });
+            }
+        };
+    });
 
 
 

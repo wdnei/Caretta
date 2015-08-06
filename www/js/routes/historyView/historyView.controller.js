@@ -17,7 +17,6 @@
   function HistoryViewCtrl($scope,$window, $rootScope,APIlb, $ionicPopup, User, $ionicModal, $stateParams, $ionicScrollDelegate) {
 
 
-
     $scope.types=[
       {id:"turtle",name:"Tartaruga"},
       {id:"nest",name:"Ninho"},
@@ -34,6 +33,8 @@
       $window.open("http://maps.google.com/maps?ll="+item.location.lat+","+item.location.lng+"&q="+item.location.lat+","+item.location.lng+"&z=18", '_system', 'location=yes');
 
     };
+
+
 
     $scope.isSet = function (item)
     {
@@ -86,36 +87,52 @@
 
     $scope.loadItems=function(historyType){
 
+      if(!$scope.user)
+      return;
+
       $rootScope.showLoad("Carregando Dados...");
       $scope.historyType=historyType;
       if($scope.historyType.id == "turtle")
       {
-        $scope.user.turtles.sort(function(a,b){
-          // Turn your strings into dates, and then subtract them
-          // to get a value that is either negative, positive, or zero.
-          return new Date(b.when) - new Date(a.when);
-        });
+        $scope.icon='img/icons/locateTurtle.png';
+        if($scope.user.turtles)
+        {
+          $scope.user.turtles.sort(function(a,b){
+            // Turn your strings into dates, and then subtract them
+            // to get a value that is either negative, positive, or zero.
+            return new Date(b.when) - new Date(a.when);
+          });
 
-        $scope.items=$scope.user.turtles;
-
+          $scope.items=$scope.user.turtles;
+        }
 
       }else if($scope.historyType.id == "nest")
       {
-        $scope.user.nests.sort(function(a,b){
-          // Turn your strings into dates, and then subtract them
-          // to get a value that is either negative, positive, or zero.
-          return new Date(b.when) - new Date(a.when);
-        });
+        $scope.icon='img/icons/nest.png';
 
-        $scope.items=$scope.user.nests;
+        if($scope.user.nests)
+        {
+          $scope.user.nests.sort(function(a,b){
+            // Turn your strings into dates, and then subtract them
+            // to get a value that is either negative, positive, or zero.
+            return new Date(b.when) - new Date(a.when);
+          });
+
+          $scope.items=$scope.user.nests;
+        }
       }else if($scope.historyType.id == "complaint")
       {
-        $scope.user.complaints.sort(function(a,b){
-          // Turn your strings into dates, and then subtract them
-          // to get a value that is either negative, positive, or zero.
-          return new Date(b.when) - new Date(a.when);
-        });
-        $scope.items=$scope.user.complaints;
+
+        $scope.icon='img/icons/complaint.png';
+        if($scope.user.complaints)
+        {
+          $scope.user.complaints.sort(function(a,b){
+            // Turn your strings into dates, and then subtract them
+            // to get a value that is either negative, positive, or zero.
+            return new Date(b.when) - new Date(a.when);
+          });
+          $scope.items=$scope.user.complaints;
+        }
       }
       $rootScope.hideLoad();
 
@@ -139,9 +156,13 @@
     {
       $scope.item=null;
       $scope.modal.hide();
+
     }
 
     $scope.open = function (item) {
+
+
+      $rootScope.showLoad("Carregando...");
       $scope.item=item;
       $scope.modal.show();
     };

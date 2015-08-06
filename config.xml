@@ -13,6 +13,7 @@
   <access origin="maps:*" launch-external="yes"/>
   <access origin="http://*" launch-external="yes"/>
   <access origin="https://*" launch-external="yes"/>
+  <access origin="mailto:*" launch-external="yes"/>
   <preference name="webviewbounce" value="false"/>
   <preference name="UIWebViewBounce" value="false"/>
   <preference name="DisallowOverscroll" value="true"/>
@@ -25,6 +26,7 @@
   <allow-intent href="http://*/*"/>
   <allow-intent href="https://*/*"/>
   <allow-intent href="*"/>
+  <allow-intent href="mailto:*" />
   <platform name="android">
     <icon src="resources\android\icon\drawable-ldpi-icon.png" density="ldpi"/>
     <icon src="resources\android\icon\drawable-mdpi-icon.png" density="mdpi"/>

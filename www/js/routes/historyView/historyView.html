@@ -2,7 +2,7 @@
 
   <ion-content delegate-handle="mainScroll"  class="padding">
     <ion-refresher
-    pulling-text="Pull to refresh..."
+    pulling-text="Puxe para atualizar..."
     on-refresh="init()">
   </ion-refresher>
     <div class="bar bar-header item-input-inset">
@@ -10,9 +10,6 @@
         <i class="icon ion-ios-search placeholder-icon"></i>
         <input type="search" ng-model="searchText" placeholder="Search">
       </label>
-      <button class="button button-clear" ng-click="init();">
-        Refresh
-      </button>
     </div>
     <div class="list">
       <label class="item item-input">

@@ -10,14 +10,14 @@
     <div class="list card">
 
       <div class="item item-avatar">
-        <img src="{{APIUrl+item.imgUrl}}">
+        <img ng-src="{{icon}}">
         <h2 ng-hide="isSet(item.specie)">{{item.userName}}</h2>
         <h2 ng-show="isSet(item.specie)">{{item.specie}}</h2>
 
       </div>
 
       <div class="item item-body">
-        <img class="full-image" src="{{APIUrl+item.imgUrl}}">
+        <img class="full-image" ng-src="{{APIUrl+item.imgUrl}}" imageonload="hideLoad();" >
         <p><b>Local:</b>
           <button class="button button-small button-positive" ng-click="openMap(item)">
             Ver no mapa
