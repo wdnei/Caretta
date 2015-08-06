@@ -9,19 +9,20 @@ Este é um projeto criado a partir da disciplina de Laboratório de Engenharia d
 
 ##Instalar ambiente
 	1. Instalar Node.js
-	2 $npm install -g cordova ionic
-        2. pela linha de comando e na pasta do projeto "carettaapp" instalar as dependencias:
+	2. $ npm install -g cordova ionic
+  3. pela linha de comando e na pasta do projeto "carettaapp" instalar as dependencias:
 		$ npm install
 
-	3. pela linha de comando e na pasta do projeto "carettaapp" ativar o servidor:
+	4. pela linha de comando e na pasta do projeto "carettaapp" ativar o servidor ionic(visualização em browser):
 	    $ ionic serve --lab
 
 ##Instalar Servidor Loopback
 baixar projeto em <https://github.com/wdnei/carettalb>
 
-##Instalar prototipo
-	1. Instalar Ionic App
-	2. abrir o caretta pelo id :f4907506
+##Instalar prototipo usando IONIC App(nem todas as funcionalidade neste ambiente)
+	1. Instalar Ionic App:
+	2. $ ionic upload
+	3. abrir o caretta pelo id :f4907506
 
 
 ##Debugar
