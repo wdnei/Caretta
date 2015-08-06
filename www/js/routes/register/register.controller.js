@@ -248,7 +248,7 @@
         date: new Date()
       };
 
-      $scope.imageSrc="";
+      $scope.imageSrc="img/logo.png";
 
       $scope.image = {};
       $scope.location = {};
